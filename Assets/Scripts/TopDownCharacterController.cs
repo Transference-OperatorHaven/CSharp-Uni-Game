@@ -18,19 +18,12 @@ public class TopDownCharacterController : MonoBehaviour
     //reference to attached sprite renderer;
     private SpriteRenderer sR;
 
+    //reference to attached PlayerStats custom script;
+    private PlayerStats pS;
+
     //The direction the player is moving in
     [SerializeField] private Vector2 playerDirection;
-
-    //The speed at which they're moving
-    [SerializeField] private float playerSpeed = 1f;
-
-    [Header("Movement parameters")]
-    //The maximum speed the player can move
-    [SerializeField] private float playerMaxSpeed = 100f;
     #endregion
-
-    private bool isDodge, hasDodgeUpgrade;
-    [SerializeField]float dodgeDuration, dodgeLength, dodgeCooldown, dodgeCooldownLength;
 
 
     /// <summary>
@@ -43,6 +36,7 @@ public class TopDownCharacterController : MonoBehaviour
         animator = GetComponent<Animator>();
         bC = GetComponent<BoxCollider2D>();
         sR = GetComponent<SpriteRenderer>();
+        pS = GetComponent<PlayerStats>();
     }
 
     /// <summary>
@@ -60,10 +54,10 @@ public class TopDownCharacterController : MonoBehaviour
     {
         //Set the velocity to the direction they're moving in, multiplied
         //by the speed they're moving
-        if (!isDodge)
-        {
-            rb.velocity = playerDirection * (playerSpeed * playerMaxSpeed) * Time.fixedDeltaTime;
-        }
+        //if (!pS.isDodging)
+        //{
+            rb.velocity = playerDirection.normalized * (pS.playerSpeed * pS.playerSpeedMax) * Time.fixedDeltaTime;
+        //}
     }
 
     /// <summary>
@@ -71,43 +65,44 @@ public class TopDownCharacterController : MonoBehaviour
     /// </summary>
     private void Update()
     {
+
         // read input from WASD keys
-        playerDirection.x = Input.GetAxis("Horizontal");
-        playerDirection.y = Input.GetAxis("Vertical");
+        playerDirection.x = Input.GetAxisRaw("Horizontal");
+        playerDirection.y = Input.GetAxisRaw("Vertical");
 
         // check if there is some movement direction, if there is something, then set animator flags and make speed = 1
         if (playerDirection.magnitude != 0)
         {
             animator.SetFloat("Horizontal", playerDirection.x);
             animator.SetFloat("Vertical", playerDirection.y);
-            animator.SetFloat("Speed", playerDirection.magnitude);
+            animator.SetFloat("Speed", (playerDirection.magnitude > 1) ? 1 : playerDirection.magnitude);
 
             //And set the speed to 1, so they move!
-            playerSpeed = 1f;
+            pS.playerSpeed = 1f;
 
 
             if (Input.GetAxisRaw("Dodge") == 1)
             {
-                if(dodgeCooldown < Time.deltaTime)
+                if(pS.dodgeCooldown <= Time.deltaTime)
                 {
-                    Dodge();
+                    Debug.Log("dodged!");
                 }
             }
 
             if(Input.GetKey(KeyCode.U))
             {
-                hasDodgeUpgrade = true;
+                pS.dodgeSpecialUnlocked = true;
             }
             if (Input.GetKey(KeyCode.O))
             {
-                hasDodgeUpgrade = true;
+                pS.dodgeSpecialUnlocked = false;
             }
         }
         else
         {
             //Was the input just cancelled (released)? If so, set
             //speed to 0
-            playerSpeed = 0f;
+            pS.playerSpeed = 0f;
 
             //Update the animator too, and return
             animator.SetFloat("Speed", 0);
@@ -123,35 +118,6 @@ public class TopDownCharacterController : MonoBehaviour
 
     }
 
-    void Dodge()
-    {
-        if (!isDodge)
-        {
-            StartCoroutine(BecomeDodge());
-        }
-    }
 
-    private IEnumerator BecomeDodge()
-    {
-        Debug.Log("Dodging!");
-        isDodge = true;
-        if (hasDodgeUpgrade)
-        {
-            gameObject.layer = 7;
-            sR.color = Color.white;
-        }
-
-        rb.velocity = playerDirection * dodgeLength * Time.deltaTime;
-
-        yield return new WaitForSeconds(dodgeDuration);
-
-        Debug.Log("Stopped Dodging!");
-        isDodge = false;
-        if (hasDodgeUpgrade)
-        {
-            gameObject.layer = 6;
-            sR.color = Color.white;
-        }
-        dodgeCooldown = Time.deltaTime + dodgeCooldownLength;
-    }
+    
 }

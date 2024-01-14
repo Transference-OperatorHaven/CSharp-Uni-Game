@@ -38549,6 +38549,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1861326226}
   - component: {fileID: 1861326227}
+  - component: {fileID: 1861326234}
   - component: {fileID: 1861326229}
   - component: {fileID: 1861326232}
   - component: {fileID: 1861326231}
@@ -38589,12 +38590,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDirection: {x: 0, y: 0}
-  playerSpeed: 1
-  playerMaxSpeed: 200
-  dodgeDuration: 0.5
-  dodgeLength: 2000
-  dodgeCooldown: 0
-  dodgeCooldownLength: 5
 --- !u!50 &1861326229
 Rigidbody2D:
   serializedVersion: 4
@@ -38608,8 +38603,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 1
+  m_AngularDrag: 1
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -38727,7 +38722,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.032458186, y: -0.002834916}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -38738,5 +38733,26 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.07, y: 1.24}
+  m_Size: {x: 0.9578719, y: 1.2748518}
   m_EdgeRadius: 0
+--- !u!114 &1861326234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1861326223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1745c7445e8e2494b83e946559d04ed3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealthCurrent: 0
+  playerHealthMax: 0
+  playerSpeed: 2
+  playerSpeedMax: 300
+  isDodging: 0
+  dodgeSpecialUnlocked: 0
+  dodgeCooldown: 0
+  dodgeCooldownPeriod: 0
+  dodgeDistance: 0
