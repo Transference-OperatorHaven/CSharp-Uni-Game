@@ -6263,7 +6263,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 16.875
+  orthographic size: 5.625
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -6308,10 +6308,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
   m_AssetsPPU: 16
-  m_RefResolutionX: 680
+  m_RefResolutionX: 320
   m_RefResolutionY: 180
-  m_CropFrame: 0
-  m_GridSnapping: 0
+  m_CropFrame: 3
+  m_GridSnapping: 2
   m_FilterMode: 0
   m_UpscaleRT: 0
   m_PixelSnapping: 0
@@ -38778,6 +38778,7 @@ MonoBehaviour:
   playerSpeedMax: 300
   isDodging: 0
   dodgeSpecialUnlocked: 0
+  dodgeDuration: 0
   dodgeCooldown: 0
   dodgeCooldownPeriod: 0
   dodgeDistance: 0

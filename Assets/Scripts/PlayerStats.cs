@@ -17,7 +17,7 @@ public class PlayerStats : MonoBehaviour
     // ! Abilities stuff
     [Header("Ability Variables")]
     [HideInInspector]public bool isDodging = false, dodgeSpecialUnlocked;
-    public float dodgeCooldown, dodgeCooldownPeriod, dodgeDistance;
+    public float dodgeDuration, dodgeCooldown, dodgeCooldownPeriod, dodgeDistance;
 
 
 

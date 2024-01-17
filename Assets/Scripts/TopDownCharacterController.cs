@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -83,9 +84,10 @@ public class TopDownCharacterController : MonoBehaviour
 
             if (Input.GetAxisRaw("Dodge") == 1)
             {
-                if(pS.dodgeCooldown <= Time.deltaTime)
+                if(pS.dodgeCooldown <= Time.time)
                 {
                     Debug.Log("dodged!");
+                    Dodge();
                 }
             }
 
@@ -105,6 +107,7 @@ public class TopDownCharacterController : MonoBehaviour
             pS.playerSpeed = 0f;
 
             //Update the animator too, and return
+            animator.Play("idleTree");
             animator.SetFloat("Speed", 0);
         }
 
@@ -116,6 +119,17 @@ public class TopDownCharacterController : MonoBehaviour
         }
 
 
+    }
+
+    private IEnumerator Dodge()
+    {
+        pS.isDodging = true;
+        animator.Play("rollTree");
+        pS.dodgeCooldown = Time.time + pS.dodgeCooldownPeriod;
+
+        yield return new WaitForSeconds(pS.dodgeDuration);
+
+        pS.isDodging = false;
     }
 
 
