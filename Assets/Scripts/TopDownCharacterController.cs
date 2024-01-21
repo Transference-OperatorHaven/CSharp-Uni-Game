@@ -20,12 +20,13 @@ public class TopDownCharacterController : MonoBehaviour
     private SpriteRenderer sR;
 
     //reference to attached PlayerStats custom script;
-    private PlayerStats pS;
+    private PlayerStats ps;
 
     //The direction the player is moving in
     [SerializeField] private Vector2 playerDirection;
     #endregion
 
+    [SerializeField] private Vector2 savedDirection;
 
     /// <summary>
     /// When the script first initialises this gets called, use this for grabbing componenets
@@ -37,7 +38,7 @@ public class TopDownCharacterController : MonoBehaviour
         animator = GetComponent<Animator>();
         bC = GetComponent<BoxCollider2D>();
         sR = GetComponent<SpriteRenderer>();
-        pS = GetComponent<PlayerStats>();
+        ps = GetComponent<PlayerStats>();
     }
 
     /// <summary>
@@ -55,10 +56,10 @@ public class TopDownCharacterController : MonoBehaviour
     {
         //Set the velocity to the direction they're moving in, multiplied
         //by the speed they're moving
-        //if (!pS.isDodging)
-        //{
-            rb.velocity = playerDirection.normalized * (pS.playerSpeed * pS.playerSpeedMax) * Time.fixedDeltaTime;
-        //}
+        if (!ps.isDodging)
+        {
+            rb.velocity = playerDirection.normalized * (ps.playerSpeed * ps.playerSpeedMax) * Time.fixedDeltaTime;
+        }
     }
 
     /// <summary>
@@ -67,9 +68,26 @@ public class TopDownCharacterController : MonoBehaviour
     private void Update()
     {
 
-        // read input from WASD keys
-        playerDirection.x = Input.GetAxisRaw("Horizontal");
-        playerDirection.y = Input.GetAxisRaw("Vertical");
+
+        // read input from WASD keys whilst not dodging
+        if (!ps.isDodging)
+        {
+            playerDirection.x = Input.GetAxisRaw("Horizontal");
+            playerDirection.y = Input.GetAxisRaw("Vertical");
+        }
+
+        if (!ps.isDodging)
+        {
+            if (Input.GetAxisRaw("Dodge") == 1)
+            {
+                if (ps.dodgeCooldown <= Time.time)
+                {
+
+                    StartCoroutine(Dodge());
+                }
+            }
+        }
+    
 
         // check if there is some movement direction, if there is something, then set animator flags and make speed = 1
         if (playerDirection.magnitude != 0)
@@ -79,36 +97,32 @@ public class TopDownCharacterController : MonoBehaviour
             animator.SetFloat("Speed", (playerDirection.magnitude > 1) ? 1 : playerDirection.magnitude);
 
             //And set the speed to 1, so they move!
-            pS.playerSpeed = 1f;
-
-
-            if (Input.GetAxisRaw("Dodge") == 1)
-            {
-                if(pS.dodgeCooldown <= Time.time)
-                {
-                    Debug.Log("dodged!");
-                    Dodge();
-                }
-            }
+            ps.playerSpeed = 1f;
+            
 
             if(Input.GetKey(KeyCode.U))
             {
-                pS.dodgeSpecialUnlocked = true;
+                ps.dodgeSpecialUnlocked = true;
             }
             if (Input.GetKey(KeyCode.O))
             {
-                pS.dodgeSpecialUnlocked = false;
+                ps.dodgeSpecialUnlocked = false;
             }
+
+            savedDirection = playerDirection;
         }
         else
         {
             //Was the input just cancelled (released)? If so, set
             //speed to 0
-            pS.playerSpeed = 0f;
+            ps.playerSpeed = 0f;
 
-            //Update the animator too, and return
-            animator.Play("idleTree");
-            animator.SetFloat("Speed", 0);
+            //Update the animator too, and return if not dodging
+            if (!ps.isDodging)
+            {
+                animator.Play("idleTree");
+                animator.SetFloat("Speed", 0);
+            }
         }
 
         // Was the fire button pressed (mapped to Left mouse button or gamepad trigger)
@@ -121,15 +135,24 @@ public class TopDownCharacterController : MonoBehaviour
 
     }
 
+
     private IEnumerator Dodge()
     {
-        pS.isDodging = true;
-        animator.Play("rollTree");
-        pS.dodgeCooldown = Time.time + pS.dodgeCooldownPeriod;
+        float t = 0;
+        Debug.Log("dodgeing!");
+        ps.isDodging = true;
+        ps.dodgeCooldown = Time.time + ps.dodgeCooldownLength;
+        while (t < ps.dodgeDuration)
+        {
 
-        yield return new WaitForSeconds(pS.dodgeDuration);
-
-        pS.isDodging = false;
+            animator.Play("rollTree");
+            t += Time.deltaTime;
+            rb.velocity = savedDirection.normalized * ps.dodgeDistance;
+            animator.SetFloat("Speed", 1);
+            yield return null;
+        }
+        rb.velocity = savedDirection * 0;
+        ps.isDodging = false;
     }
 
 

@@ -38615,6 +38615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDirection: {x: 0, y: 0}
+  savedDirection: {x: 0, y: 0}
 --- !u!50 &1861326229
 Rigidbody2D:
   serializedVersion: 4
@@ -38640,7 +38641,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &1861326231
 SpriteRenderer:
@@ -38775,10 +38776,10 @@ MonoBehaviour:
   playerHealthCurrent: 0
   playerHealthMax: 0
   playerSpeed: 2
-  playerSpeedMax: 300
+  playerSpeedMax: 250
   isDodging: 0
   dodgeSpecialUnlocked: 0
-  dodgeDuration: 0
+  dodgeDuration: 0.33
   dodgeCooldown: 0
-  dodgeCooldownPeriod: 0
-  dodgeDistance: 0
+  dodgeCooldownLength: 2
+  dodgeDistance: 13
