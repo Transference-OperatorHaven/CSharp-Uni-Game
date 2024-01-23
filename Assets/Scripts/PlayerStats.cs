@@ -20,6 +20,13 @@ public class PlayerStats : MonoBehaviour
     public bool dodgeSpecialUnlocked;
     public float dodgeDuration, dodgeCooldown, dodgeCooldownLengthBase, dodgeCooldownLengthCurrent, dodgeCooldownLengthModifier, dodgeVelocityBase, dodgeVelocityCurrent, dodgeVelocityModifier;
 
+    [Header("Sword Variables")]
+    public bool isAttacking = false;
+    public float attackDamageBase, attackDamageCurrent, attackDamageModifier;
+    public float attackRadiusBase, attackRadiusCurrent, attackRadiusModifier;
+    public float attackDurationBase, attackDurationCurrent, attackDurationModifier;
+    public float attackCooldown, attackCooldownLengthBase, attackCooldownLengthCurrent, attackCooldownLengthModifier;
+
     [Header("Shoot Variables")]
     public bool isAiming = false;
     public float gunDamageBase, gunDamageCurrent, gunDamageModifier, gunSpeedBase, gunSpeedCurrent, gunSpeedModifier;
@@ -29,6 +36,7 @@ public class PlayerStats : MonoBehaviour
     {
         UpdateDodgeStats();
         UpdateGunStats();
+        UpdateSwordStats();
 
     }
 
@@ -45,6 +53,15 @@ public class PlayerStats : MonoBehaviour
 
         gunDamageCurrent = gunDamageBase * (1 + gunDamageModifier);
         gunSpeedCurrent = gunSpeedBase * (1 + gunSpeedModifier);
+
+    }
+
+    public void UpdateSwordStats()
+    {
+        attackRadiusCurrent = attackRadiusBase * (1 + attackRadiusModifier);
+        attackDurationCurrent = attackDurationBase * (1 + attackDurationModifier);
+        attackCooldownLengthCurrent = attackCooldownLengthBase;
+        attackDamageCurrent = attackDamageBase * (1 + gunDamageModifier);
 
     }
 

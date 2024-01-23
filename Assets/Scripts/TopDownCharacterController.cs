@@ -9,7 +9,7 @@ public class TopDownCharacterController : MonoBehaviour
 {
     #region Framework Stuff
     //Reference to attached animator
-    private Animator animator;
+    public Animator animator;
 
     //Reference to attached rigidbody 2D
     private Rigidbody2D rb;
@@ -25,6 +25,9 @@ public class TopDownCharacterController : MonoBehaviour
 
     //The direction the player is moving in
     [SerializeField] private Vector2 playerDirection;
+
+    [SerializeField] private Transform attackPos;
+    
     #endregion
 
     [SerializeField] private Vector2 savedDirection;
@@ -131,6 +134,15 @@ public class TopDownCharacterController : MonoBehaviour
         {
             InitiateAiming();
         }
+        else if(Input.GetAxisRaw("Ready Aim") == 0)
+        {
+
+            ps.isAiming = false;
+
+        }
+
+
+        attackPos.localPosition = savedDirection;
 
 
     }
