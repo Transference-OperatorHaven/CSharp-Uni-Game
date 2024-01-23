@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class TopDownCharacterController : MonoBehaviour
@@ -56,7 +57,7 @@ public class TopDownCharacterController : MonoBehaviour
     {
         //Set the velocity to the direction they're moving in, multiplied
         //by the speed they're moving
-        if (!ps.isDodging)
+        if (!ps.isDodging && !ps.isAiming)
         {
             rb.velocity = playerDirection.normalized * (ps.playerSpeed * ps.playerSpeedMax) * Time.fixedDeltaTime;
         }
@@ -70,13 +71,13 @@ public class TopDownCharacterController : MonoBehaviour
 
 
         // read input from WASD keys whilst not dodging
-        if (!ps.isDodging)
+        if (!ps.isDodging && !ps.isAiming)
         {
             playerDirection.x = Input.GetAxisRaw("Horizontal");
             playerDirection.y = Input.GetAxisRaw("Vertical");
         }
 
-        if (!ps.isDodging)
+        if (!ps.isDodging && !ps.isAiming)
         {
             if (Input.GetAxisRaw("Dodge") == 1)
             {
@@ -118,7 +119,7 @@ public class TopDownCharacterController : MonoBehaviour
             ps.playerSpeed = 0f;
 
             //Update the animator too, and return if not dodging
-            if (!ps.isDodging)
+            if (!ps.isDodging && !ps.isAiming)
             {
                 animator.Play("idleTree");
                 animator.SetFloat("Speed", 0);
@@ -126,10 +127,9 @@ public class TopDownCharacterController : MonoBehaviour
         }
 
         // Was the fire button pressed (mapped to Left mouse button or gamepad trigger)
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetAxisRaw("Ready Aim") == 1)
         {
-            //Shoot (well debug for now)
-            Debug.Log($"Shoot! {Time.time}", gameObject);
+            InitiateAiming();
         }
 
 
@@ -141,13 +141,13 @@ public class TopDownCharacterController : MonoBehaviour
         float t = 0;
         Debug.Log("dodgeing!");
         ps.isDodging = true;
-        ps.dodgeCooldown = Time.time + ps.dodgeCooldownLength;
+        ps.dodgeCooldown = Time.time + ps.dodgeCooldownLengthCurrent;
         while (t < ps.dodgeDuration)
         {
 
             animator.Play("rollTree");
             t += Time.deltaTime;
-            rb.velocity = savedDirection.normalized * ps.dodgeDistance;
+            rb.velocity = savedDirection.normalized * ps.dodgeVelocityCurrent;
             animator.SetFloat("Speed", 1);
             yield return null;
         }
@@ -155,6 +155,17 @@ public class TopDownCharacterController : MonoBehaviour
         ps.isDodging = false;
     }
 
+    private void InitiateAiming()
+    {
+        ps.isAiming = true;
+        rb.velocity = new Vector2 (0, 0);
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-    
+
+        animator.Play("gunTree");
+        
+
+    }
+
+
 }

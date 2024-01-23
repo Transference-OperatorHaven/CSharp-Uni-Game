@@ -15,12 +15,37 @@ public class PlayerStats : MonoBehaviour
 
 
     // ! Abilities stuff
-    [Header("Ability Variables")]
+    [Header("Dodge Variables")]
     public bool isDodging = false;
     public bool dodgeSpecialUnlocked;
-    public float dodgeDuration, dodgeCooldown, dodgeCooldownLength, dodgeDistance;
+    public float dodgeDuration, dodgeCooldown, dodgeCooldownLengthBase, dodgeCooldownLengthCurrent, dodgeCooldownLengthModifier, dodgeVelocityBase, dodgeVelocityCurrent, dodgeVelocityModifier;
 
+    [Header("Shoot Variables")]
+    public bool isAiming = false;
+    public float gunDamageBase, gunDamageCurrent, gunDamageModifier, gunSpeedBase, gunSpeedCurrent, gunSpeedModifier;
+    public float reloadTimeBase, reloadTimeCurrent, reloadTimeModifier;
 
+    private void Start()
+    {
+        UpdateDodgeStats();
+        UpdateGunStats();
 
+    }
+
+    public void UpdateDodgeStats()
+    { 
+
+        dodgeCooldownLengthCurrent = dodgeCooldownLengthBase * (1 - dodgeCooldownLengthModifier);
+        dodgeVelocityCurrent = dodgeVelocityBase * (1 + dodgeVelocityModifier);
+
+    }
+
+    public void UpdateGunStats()
+    {
+
+        gunDamageCurrent = gunDamageBase * (1 + gunDamageModifier);
+        gunSpeedCurrent = gunSpeedBase * (1 + gunSpeedModifier);
+
+    }
 
 }
