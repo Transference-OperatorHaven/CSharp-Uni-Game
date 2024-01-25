@@ -31,7 +31,7 @@ public class TopDownCharacterController : MonoBehaviour
     #endregion
 
     [SerializeField] private Vector2 savedDirection;
-
+    [SerializeField] Texture2D crosshair;
     /// <summary>
     /// When the script first initialises this gets called, use this for grabbing componenets
     /// </summary>
@@ -122,7 +122,7 @@ public class TopDownCharacterController : MonoBehaviour
             ps.playerSpeed = 0f;
 
             //Update the animator too, and return if not dodging
-            if (!ps.isDodging && !ps.isAiming)
+            if (!ps.isDodging && !ps.isAiming && !ps.isAttacking)
             {
                 animator.Play("idleTree");
                 animator.SetFloat("Speed", 0);
@@ -138,6 +138,7 @@ public class TopDownCharacterController : MonoBehaviour
         {
 
             ps.isAiming = false;
+            Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
 
         }
 
@@ -169,10 +170,13 @@ public class TopDownCharacterController : MonoBehaviour
 
     private void InitiateAiming()
     {
+        Vector2 playerToMouseVector;
         ps.isAiming = true;
         rb.velocity = new Vector2 (0, 0);
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-
+        playerToMouseVector = (transform.position - mousePosition) * -1;   
+        playerDirection = playerToMouseVector.normalized;
+        Cursor.SetCursor(crosshair, Vector2.zero, CursorMode.Auto);
 
         animator.Play("gunTree");
         

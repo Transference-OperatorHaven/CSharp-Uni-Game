@@ -8,6 +8,7 @@ public class SwordAttack : MonoBehaviour
 {
 
     private PlayerStats ps;
+    private ComboSystem combo;
     public LayerMask attackLayer;
     public Transform attackPos;
     public Collider2D[] objectsHit;
@@ -17,6 +18,7 @@ public class SwordAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        combo = GetComponent<ComboSystem>();
         ps = GetComponent<PlayerStats>();
         controller = GetComponent<TopDownCharacterController>();
     }
@@ -24,7 +26,7 @@ public class SwordAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!ps.isAttacking)
+        if (!ps.isAttacking && !ps.isAiming)
         {
             if (Input.GetAxisRaw("Attack") == 1)
             {
@@ -54,8 +56,9 @@ public class SwordAttack : MonoBehaviour
                 Debug.Log(objectsHit.Length + "objects hit!");
                 foreach (Collider2D hit in objectsHit)
                 {
-                    hit.gameObject.GetComponent<Health>().ChangeHealth(ps.attackDamageCurrent);
-                    if (hit.gameObject.GetComponent<Health>() == null) { Debug.Log("Hit thing with no health"); yield return null; }
+                    combo.ComboIncrease();
+                    hit.gameObject.GetComponent<EnemyHealth>().ChangeHealth(ps.attackDamageCurrent);
+                    if (hit.gameObject.GetComponent<EnemyHealth>() == null) { Debug.Log("Hit thing with no health"); yield return null; }
                 }
             }
             yield return null;
