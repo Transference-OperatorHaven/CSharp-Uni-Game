@@ -12,12 +12,14 @@ public class ComboSystem : MonoBehaviour
     [Header("UI elements")]
     public TMPro.TextMeshProUGUI ComboCountText;
     public TMPro.TextMeshProUGUI ComboMultiplierText;
+    public TMPro.TextMeshProUGUI ComboDamage;
+    PlayerStats ps;
     public Slider slider;
-    public ParticleSystem particles;
     float t = 0;
 
     private void Start()
     {
+        ps = GetComponent<PlayerStats>();
         UpdateComboDecay();
         UpdateComboGain();
         DisableComboUI();
@@ -52,15 +54,16 @@ public class ComboSystem : MonoBehaviour
         slider.gameObject.SetActive(true);
     }
 
-    public void ComboIncrease()
+    public void ComboIncrease(float damage)
     {
         ResetDecay();
         if(ComboCount <= 0)
         {
             EnableComboUI();
-            slider.gameObject.SetActive(true);
             StartCoroutine(ComboDecay());
         }
+        ComboDamage.text = damage.ToString();
+        ComboDamage.GetComponent<DamageAnimation>().DoAWiggle(damage);
         ComboCount = Mathf.Floor(ComboCount + (ComboGainCurrent));
         ComboMultiplier = Mathf.Floor(ComboCount / 10);
 
@@ -82,7 +85,6 @@ public class ComboSystem : MonoBehaviour
 
     IEnumerator ComboDecay()
     {
-        if (!particles.isPlaying) {particles.Play();}
         t = 0;
         while (t < ComboDecayLengthCurrent)
         {
@@ -95,7 +97,6 @@ public class ComboSystem : MonoBehaviour
         }
         ComboCount = 0;
         ComboMultiplier = 0;
-        if (particles.isPlaying) { particles.Stop(); }
         DisableComboUI();
 
     }

@@ -9,7 +9,7 @@ public class SwordAttack : MonoBehaviour
 
     private PlayerStats ps;
     private ComboSystem combo;
-    public LayerMask attackLayer;
+    public LayerMask swordLayer;
     public Transform attackPos;
     public Collider2D[] objectsHit;
     RaycastHit2D[] hits;
@@ -30,7 +30,7 @@ public class SwordAttack : MonoBehaviour
         {
             if (Input.GetAxisRaw("Attack") == 1)
             {
-                if (ps.attackCooldown < Time.time)
+                if (ps.swordCooldown < Time.time)
                 {
                     StartCoroutine(Attack());
                 }
@@ -42,22 +42,22 @@ public class SwordAttack : MonoBehaviour
     private IEnumerator Attack()
     {
         float t = 0;
-        Debug.Log("attacking!");
+        Debug.Log("swording!");
 
         ps.isAttacking = true;
-        ps.attackCooldown = Time.time + ps.attackCooldownLengthCurrent;
-        while (t < ps.attackDurationCurrent)
+        ps.swordCooldown = Time.time + ps.swordCooldownLengthCurrent;
+        while (t < ps.swordDurationCurrent)
         {
             t += Time.deltaTime;
             controller.animator.Play("Attack Tree");
-            objectsHit = Physics2D.OverlapCircleAll(attackPos.position, ps.attackRadiusCurrent, attackLayer);
+            objectsHit = Physics2D.OverlapCircleAll(attackPos.position, ps.swordRadiusCurrent, swordLayer);
             if (objectsHit.Length > 0)
             {
                 Debug.Log(objectsHit.Length + "objects hit!");
                 foreach (Collider2D hit in objectsHit)
                 {
-                    combo.ComboIncrease();
-                    hit.gameObject.GetComponent<EnemyHealth>().ChangeHealth(ps.attackDamageCurrent);
+                    combo.ComboIncrease(ps.swordDamageCurrent);
+                    hit.gameObject.GetComponent<EnemyHealth>().ChangeHealth(ps.swordDamageCurrent);
                     if (hit.gameObject.GetComponent<EnemyHealth>() == null) { Debug.Log("Hit thing with no health"); yield return null; }
                 }
             }

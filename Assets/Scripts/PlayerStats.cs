@@ -22,10 +22,10 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Sword Variables")]
     public bool isAttacking = false;
-    public float attackDamageBase, attackDamageCurrent, attackDamageModifier;
-    public float attackRadiusBase, attackRadiusCurrent, attackRadiusModifier;
-    public float attackDurationBase, attackDurationCurrent, attackDurationModifier;
-    public float attackCooldown, attackCooldownLengthBase, attackCooldownLengthCurrent, attackCooldownLengthModifier;
+    public float swordDamageBase, swordDamageCurrent, swordDamageModifier;
+    public float swordRadiusBase, swordRadiusCurrent, swordRadiusModifier;
+    public float swordDurationBase, swordDurationCurrent, swordDurationModifier;
+    public float swordCooldown, swordCooldownLengthBase, swordCooldownLengthCurrent, swordCooldownLengthModifier;
 
     [Header("Shoot Variables")]
     public bool isAiming = false;
@@ -58,10 +58,11 @@ public class PlayerStats : MonoBehaviour
 
     public void UpdateSwordStats()
     {
-        attackRadiusCurrent = attackRadiusBase * (1 + attackRadiusModifier);
-        attackDurationCurrent = attackDurationBase * (1 + attackDurationModifier);
-        attackCooldownLengthCurrent = attackCooldownLengthBase;
-        attackDamageCurrent = attackDamageBase * (1 + gunDamageModifier);
+        swordRadiusCurrent = swordRadiusBase * (1 + swordRadiusModifier);
+        swordDurationCurrent = swordDurationBase * (1 + swordDurationModifier);
+        swordCooldownLengthCurrent = swordCooldownLengthBase;
+        swordDamageCurrent = swordDamageBase * (1 + swordDamageModifier);
+
 
     }
 
