@@ -7,7 +7,20 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     PlayerStats ps;
-    public List<ype> stats;
+    public enum statBuff
+    {
+        dodgeCooldown,
+        dodgeVelocity,
+        swordDamage,
+        swordRadius,
+        swordDuration,
+        swordCooldown,
+        gunDamage,
+        gunSpeed,
+        reloadTime
+    }
+
+    public statBuff _statBuff;
 
     
     [SerializeField] float duration;
@@ -16,11 +29,13 @@ public class PickUp : MonoBehaviour
     public string Description;
     
     SpriteRenderer sr;
+    BoxCollider2D bc;
     [SerializeField]PowerupTextDisplay textDisplay;
 
     private void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        bc = GetComponent<BoxCollider2D>();
     }
 
 
@@ -28,25 +43,128 @@ public class PickUp : MonoBehaviour
     {
         Debug.Log("Collided!");
         ps = collision.gameObject.GetComponent<PlayerStats>();
-        ps.swordDamageModifier += strength;
-        ps.UpdateSwordStats();
-        textDisplay.DisplayPowerupInfo(Name, Description);
         sr.enabled = false;
-        StartCoroutine(PowerupDuration());
+        bc.enabled = false;
+        textDisplay.DisplayPowerupInfo(Name, Description);
+        switch (_statBuff)
+        {
+            case statBuff.dodgeCooldown :
+                StartCoroutine(DodgeCooldown());
+                break;
+            case statBuff.dodgeVelocity :
+                StartCoroutine(DodgeVelocity());
+                break;
+            case statBuff.swordDamage :
+                StartCoroutine(SwordDamage());
+                break;
+            case statBuff.swordRadius :
+                StartCoroutine(SwordRadius());
+                break;
+            case statBuff.swordDuration :
+                StartCoroutine(SwordDuration());
+                break;
+            case statBuff.swordCooldown :
+                StartCoroutine(SwordCooldown());
+                break;
+            case statBuff.gunDamage : 
+                StartCoroutine(GunDamage());
+                break;
+            case statBuff.gunSpeed :
+                StartCoroutine(GunSpeed());
+                break;
+            case statBuff.reloadTime : 
+                StartCoroutine(ReloadTime());
+                break;
+        }
     }
 
-
-    IEnumerator PowerupDuration()
+    IEnumerator DodgeCooldown()
     {
-        float t = 0;
-        while (t < duration)
-        {
-            t += Time.deltaTime;
+        ps.dodgeCooldownLengthModifier += strength;
+        ps.UpdateDodgeStats();
+        yield return new WaitForSeconds(duration);
+        ps.dodgeCooldownLengthModifier -= strength;
+        ps.UpdateDodgeStats();
+        Destroy(gameObject);
+    }
 
-            yield return null;
-        }
+    IEnumerator DodgeVelocity()
+    {
+        ps.dodgeVelocityModifier += strength;
+        ps.UpdateDodgeStats();
+        yield return new WaitForSeconds(duration);
+        ps.dodgeVelocityModifier -= strength;
+        ps.UpdateDodgeStats();
+        Destroy(gameObject);
+    }
+
+    IEnumerator SwordDamage()
+    {
+        ps.swordDamageModifier += strength;
+        ps.UpdateSwordStats();
+        yield return new WaitForSeconds(duration);
         ps.swordDamageModifier -= strength;
         ps.UpdateSwordStats();
+        Destroy(gameObject);
+    }
+
+    IEnumerator SwordRadius()
+    {
+        ps.swordRadiusModifier += strength;
+        ps.UpdateSwordStats();
+        yield return new WaitForSeconds(duration);
+        ps.swordRadiusModifier -= strength;
+        ps.UpdateSwordStats();
+        Destroy(gameObject);
+    }
+
+    IEnumerator SwordDuration()
+    {
+        ps.swordDurationModifier += strength;
+        ps.UpdateSwordStats();
+        yield return new WaitForSeconds(duration);
+        ps.swordDurationModifier -= strength;
+        ps.UpdateSwordStats();
+        Destroy(gameObject);
+    }
+
+    IEnumerator SwordCooldown()
+    {
+        ps.swordCooldownLengthModifier += strength;
+        ps.UpdateSwordStats();
+        yield return new WaitForSeconds(duration);
+        ps.swordCooldownLengthModifier -= strength;
+        ps.UpdateSwordStats();
+        Destroy(gameObject);
+    }
+
+    IEnumerator GunDamage()
+    {
+        ps.gunDamageModifier += strength;
+        ps.UpdateGunStats();
+        yield return new WaitForSeconds(duration);
+        ps.gunDamageModifier -= strength;
+        ps.UpdateGunStats();
+        Destroy(gameObject);
+    }
+
+    IEnumerator GunSpeed()
+    {
+        ps.gunSpeedModifier += strength;
+        ps.UpdateGunStats();
+        yield return new WaitForSeconds(duration);
+        ps.gunSpeedModifier -= strength;
+        ps.UpdateGunStats();
+        Destroy(gameObject);
+    }
+
+    IEnumerator ReloadTime()
+    {
+        ps.reloadTimeModifier += strength;
+        ps.UpdateGunStats();
+        yield return new WaitForSeconds(duration);
+        ps.reloadTimeModifier -= strength;
+        ps.UpdateGunStats();
         Destroy(gameObject);
     }
 }

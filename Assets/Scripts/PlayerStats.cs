@@ -53,6 +53,7 @@ public class PlayerStats : MonoBehaviour
 
         gunDamageCurrent = gunDamageBase * (1 + gunDamageModifier);
         gunSpeedCurrent = gunSpeedBase * (1 + gunSpeedModifier);
+        reloadTimeCurrent = reloadTimeBase * (1 + reloadTimeModifier);
 
     }
 

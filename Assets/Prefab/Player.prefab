@@ -62,10 +62,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.21510418
-    y: 0.012037037
-    width: 0.33333334
-    height: 0.3333333
+    x: 0.010937501
+    y: 0.18703704
+    width: 0.16666667
+    height: 0.16666666
   near clip plane: 0.1
   far clip plane: 5000
   field of view: 40
@@ -152,8 +152,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
   m_AssetsPPU: 16
-  m_RefResolutionX: 320
-  m_RefResolutionY: 180
+  m_RefResolutionX: 640
+  m_RefResolutionY: 360
   m_CropFrame: 3
   m_GridSnapping: 2
   m_FilterMode: 0
@@ -362,19 +362,19 @@ MonoBehaviour:
   dodgeVelocityCurrent: 0
   dodgeVelocityModifier: 0
   isAttacking: 0
-  attackDamageBase: 0
-  attackDamageCurrent: 0
-  attackDamageModifier: 0
-  attackRadiusBase: 0
-  attackRadiusCurrent: 0
-  attackRadiusModifier: 0
-  attackDurationBase: 0
-  attackDurationCurrent: 0
-  attackDurationModifier: 0
-  attackCooldown: 0
-  attackCooldownLengthBase: 0
-  attackCooldownLengthCurrent: 0
-  attackCooldownLengthModifier: 0
+  swordDamageBase: 0
+  swordDamageCurrent: 0
+  swordDamageModifier: 0
+  swordRadiusBase: 0
+  swordRadiusCurrent: 0
+  swordRadiusModifier: 0
+  swordDurationBase: 0
+  swordDurationCurrent: 0
+  swordDurationModifier: 0
+  swordCooldown: 0
+  swordCooldownLengthBase: 0
+  swordCooldownLengthCurrent: 0
+  swordCooldownLengthModifier: 0
   isAiming: 0
   gunDamageBase: 0
   gunDamageCurrent: 0
@@ -542,5 +542,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d3d375171c07240962d1b51a4f36a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ComboDecayLengthBase: 0
+  ComboDecayLengthCurrent: 0
+  ComboDecayLengthModifier: 0
+  ComboGainBase: 0
+  ComboGainCurrent: 0
+  ComboGainModifier: 0
   ComboCountText: {fileID: 0}
   ComboMultiplierText: {fileID: 0}
+  ComboDamage: {fileID: 0}
+  slider: {fileID: 0}

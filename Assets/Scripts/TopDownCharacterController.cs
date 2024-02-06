@@ -132,6 +132,7 @@ public class TopDownCharacterController : MonoBehaviour
         // Was the fire button pressed (mapped to Left mouse button or gamepad trigger)
         if (Input.GetAxisRaw("Ready Aim") == 1)
         {
+            ps.isAiming = true;
             InitiateAiming();
         }
         else if(Input.GetAxisRaw("Ready Aim") == 0)
@@ -171,7 +172,7 @@ public class TopDownCharacterController : MonoBehaviour
     private void InitiateAiming()
     {
         Vector2 playerToMouseVector;
-        ps.isAiming = true;
+        
         rb.velocity = new Vector2 (0, 0);
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         playerToMouseVector = (transform.position - mousePosition) * -1;   
