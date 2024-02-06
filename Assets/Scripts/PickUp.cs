@@ -6,11 +6,15 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
+    PlayerStats ps;
+    public List<ype> stats;
+
+    
     [SerializeField] float duration;
     [SerializeField] float strength; //done as a decimal
     public string Name;
     public string Description;
-    PlayerStats ps;
+    
     SpriteRenderer sr;
     [SerializeField]PowerupTextDisplay textDisplay;
 
