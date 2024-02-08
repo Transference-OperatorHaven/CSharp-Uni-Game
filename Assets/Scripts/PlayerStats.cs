@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -32,12 +35,20 @@ public class PlayerStats : MonoBehaviour
     public float gunDamageBase, gunDamageCurrent, gunDamageModifier, gunSpeedBase, gunSpeedCurrent, gunSpeedModifier;
     public float reloadTimeBase, reloadTimeCurrent, reloadTimeModifier;
 
+    [Header("Particles")]
+    [SerializeField] Vector4 allColors;
+    [SerializeField]Color particleColor;
+    ParticleSystem ps;
+    [SerializeField]int numberOfBuffs = 0;
+    [SerializeField]ParticleSystem.MainModule psMain;
+
     private void Start()
     {
         UpdateDodgeStats();
         UpdateGunStats();
         UpdateSwordStats();
-
+        ps = GetComponentInParent<ParticleSystem>();
+        psMain = ps.main;
     }
 
     public void UpdateDodgeStats()
@@ -63,7 +74,39 @@ public class PlayerStats : MonoBehaviour
         swordDurationCurrent = swordDurationBase * (1 + swordDurationModifier);
         swordCooldownLengthCurrent = swordCooldownLengthBase;
         swordDamageCurrent = swordDamageBase * (1 + swordDamageModifier);
+    }
 
+    void CalculateParticleColorAndApply()
+    {
+        particleColor.r = allColors.x / numberOfBuffs;
+        particleColor.g = allColors.y / numberOfBuffs;
+        particleColor.b = allColors.z/ numberOfBuffs;
+        particleColor.a = 255;
+        psMain.startColor = particleColor;
+    }
+
+    public void SetParticleColor(Color color)
+    {
+        Debug.Log(color);
+        numberOfBuffs += 1;
+        if(numberOfBuffs > 0)
+        {
+            ps.Play(true);
+        }
+        allColors += new Vector4 (color.r,color.g,color.b,color.a);
+        CalculateParticleColorAndApply();
+
+    }
+
+    public void RemoveColor(Color color)
+    {
+        numberOfBuffs -= 1;
+        if(numberOfBuffs <= 0)
+        {
+            ps.Stop(true ,ParticleSystemStopBehavior.StopEmittingAndClear);
+        }
+        allColors -= new Vector4(color.r, color.g, color.b, color.a);
+        CalculateParticleColorAndApply ();
 
     }
 

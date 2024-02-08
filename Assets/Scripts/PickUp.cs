@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Burst.Intrinsics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PickUp : MonoBehaviour
 {
@@ -20,14 +21,13 @@ public class PickUp : MonoBehaviour
         reloadTime
     }
 
+    public Color buffColour;
+    int colorId;
     public statBuff _statBuff;
-
-    
     [SerializeField] float duration;
     [SerializeField] float strength; //done as a decimal
     public string Name;
     public string Description;
-    
     SpriteRenderer sr;
     BoxCollider2D bc;
     [SerializeField]PowerupTextDisplay textDisplay;
@@ -46,6 +46,7 @@ public class PickUp : MonoBehaviour
         sr.enabled = false;
         bc.enabled = false;
         textDisplay.DisplayPowerupInfo(Name, Description);
+        ps.SetParticleColor(buffColour);
         switch (_statBuff)
         {
             case statBuff.dodgeCooldown :
@@ -66,13 +67,13 @@ public class PickUp : MonoBehaviour
             case statBuff.swordCooldown :
                 StartCoroutine(SwordCooldown());
                 break;
-            case statBuff.gunDamage : 
+            case statBuff.gunDamage :
                 StartCoroutine(GunDamage());
                 break;
             case statBuff.gunSpeed :
                 StartCoroutine(GunSpeed());
                 break;
-            case statBuff.reloadTime : 
+            case statBuff.reloadTime :
                 StartCoroutine(ReloadTime());
                 break;
         }
@@ -85,6 +86,7 @@ public class PickUp : MonoBehaviour
         yield return new WaitForSeconds(duration);
         ps.dodgeCooldownLengthModifier -= strength;
         ps.UpdateDodgeStats();
+        ps.RemoveColor(buffColour);
         Destroy(gameObject);
     }
 
@@ -95,6 +97,7 @@ public class PickUp : MonoBehaviour
         yield return new WaitForSeconds(duration);
         ps.dodgeVelocityModifier -= strength;
         ps.UpdateDodgeStats();
+        ps.RemoveColor(buffColour);
         Destroy(gameObject);
     }
 
@@ -105,6 +108,7 @@ public class PickUp : MonoBehaviour
         yield return new WaitForSeconds(duration);
         ps.swordDamageModifier -= strength;
         ps.UpdateSwordStats();
+        ps.RemoveColor(buffColour);
         Destroy(gameObject);
     }
 
@@ -115,6 +119,7 @@ public class PickUp : MonoBehaviour
         yield return new WaitForSeconds(duration);
         ps.swordRadiusModifier -= strength;
         ps.UpdateSwordStats();
+        ps.RemoveColor(buffColour);
         Destroy(gameObject);
     }
 
@@ -125,6 +130,7 @@ public class PickUp : MonoBehaviour
         yield return new WaitForSeconds(duration);
         ps.swordDurationModifier -= strength;
         ps.UpdateSwordStats();
+        ps.RemoveColor(buffColour);
         Destroy(gameObject);
     }
 
@@ -135,6 +141,7 @@ public class PickUp : MonoBehaviour
         yield return new WaitForSeconds(duration);
         ps.swordCooldownLengthModifier -= strength;
         ps.UpdateSwordStats();
+        ps.RemoveColor(buffColour);
         Destroy(gameObject);
     }
 
@@ -145,6 +152,7 @@ public class PickUp : MonoBehaviour
         yield return new WaitForSeconds(duration);
         ps.gunDamageModifier -= strength;
         ps.UpdateGunStats();
+        ps.RemoveColor(buffColour);
         Destroy(gameObject);
     }
 
@@ -155,6 +163,7 @@ public class PickUp : MonoBehaviour
         yield return new WaitForSeconds(duration);
         ps.gunSpeedModifier -= strength;
         ps.UpdateGunStats();
+        ps.RemoveColor(buffColour);
         Destroy(gameObject);
     }
 
@@ -165,6 +174,7 @@ public class PickUp : MonoBehaviour
         yield return new WaitForSeconds(duration);
         ps.reloadTimeModifier -= strength;
         ps.UpdateGunStats();
+        ps.RemoveColor(buffColour);
         Destroy(gameObject);
     }
 }
