@@ -41050,6 +41050,22 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4537602045951159079, guid: 947d0a70b55434447b563c12034873e5, type: 3}
+      propertyPath: isShooting
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537602045951159079, guid: 947d0a70b55434447b563c12034873e5, type: 3}
+      propertyPath: gunSpeedBase
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537602045951159079, guid: 947d0a70b55434447b563c12034873e5, type: 3}
+      propertyPath: gunDamageBase
+      value: -8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537602045951159079, guid: 947d0a70b55434447b563c12034873e5, type: 3}
+      propertyPath: gunFireRateBase
+      value: 0.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 4537602045951159079, guid: 947d0a70b55434447b563c12034873e5, type: 3}
       propertyPath: particleColor.a
       value: 0
       objectReference: {fileID: 0}
@@ -41161,6 +41177,10 @@ PrefabInstance:
       propertyPath: crosshair
       value: 
       objectReference: {fileID: 2800000, guid: 354a187fd053e224293fe60ceffa62e0, type: 3}
+    - target: {fileID: 6658602309975616025, guid: 947d0a70b55434447b563c12034873e5, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 1908339963323981511, guid: ada04b2c537857648a9abbc9e7b639c9, type: 3}
     - target: {fileID: 7082229667147303669, guid: 947d0a70b55434447b563c12034873e5, type: 3}
       propertyPath: m_Name
       value: character

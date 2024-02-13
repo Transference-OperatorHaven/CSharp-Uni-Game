@@ -32,7 +32,8 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Shoot Variables")]
     public bool isAiming = false;
-    public float gunDamageBase, gunDamageCurrent, gunDamageModifier, gunSpeedBase, gunSpeedCurrent, gunSpeedModifier;
+    public bool isShooting = true;
+    public float gunDamageBase, gunDamageCurrent, gunDamageModifier, gunSpeedBase, gunSpeedCurrent, gunSpeedModifier, gunFireRateBase, gunFireRateCurrent, gunFireRateModifier, gunLifetimeBase, gunLifetimeCurrent, gunLifetimeModifier;
     public float reloadTimeBase, reloadTimeCurrent, reloadTimeModifier;
 
     [Header("Particles")]
@@ -61,11 +62,11 @@ public class PlayerStats : MonoBehaviour
 
     public void UpdateGunStats()
     {
-
         gunDamageCurrent = gunDamageBase * (1 + gunDamageModifier);
         gunSpeedCurrent = gunSpeedBase * (1 + gunSpeedModifier);
+        gunFireRateCurrent = gunFireRateBase * (1 + gunFireRateModifier);
+        gunLifetimeCurrent = gunLifetimeBase * (1 + gunLifetimeModifier);
         reloadTimeCurrent = reloadTimeBase * (1 + reloadTimeModifier);
-
     }
 
     public void UpdateSwordStats()

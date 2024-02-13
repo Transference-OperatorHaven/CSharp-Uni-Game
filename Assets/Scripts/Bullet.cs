@@ -7,12 +7,17 @@ public class Bullet : MonoBehaviour
 {
 
 
-    private PlayerStats ps;
-    private CircleCollider2D cCollider2D;
+    [SerializeField] public PlayerStats ps;
+    [SerializeField] Transform bulletFirePoint;
+    [SerializeField] public float bulletSpeed;
+    [SerializeField] public float bulletDamage;
+    [SerializeField] public float bulletLifetime;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        Destroy(gameObject, bulletLifetime);
         ps = GetComponentInParent<PlayerStats>();
     }
 

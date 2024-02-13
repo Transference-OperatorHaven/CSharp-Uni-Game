@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
@@ -32,6 +33,7 @@ public class TopDownCharacterController : MonoBehaviour
 
     [SerializeField] private Vector2 savedDirection;
     [SerializeField] Texture2D crosshair;
+    [SerializeField] GameObject bulletPrefab;
     /// <summary>
     /// When the script first initialises this gets called, use this for grabbing componenets
     /// </summary>
@@ -181,8 +183,35 @@ public class TopDownCharacterController : MonoBehaviour
 
         animator.Play("gunTree");
         
+        if((ps.isAiming && Input.GetAxisRaw("Shoot") == 1) && !ps.isShooting)
+        {
+            ps.isShooting = true;
+            StartCoroutine(FiringCooldown());
+            Fire(bulletPrefab, savedDirection, ps);
+            
+        }
+    }
+
+    void Fire(GameObject bulletPrefab, Vector2 position, PlayerStats ps)
+    {
+        GameObject bulletToSpawn = Instantiate(bulletPrefab, position, quaternion.identity);
+        bulletToSpawn.GetComponent<Rigidbody2D>().AddForce(savedDirection.normalized * ps.gunSpeedCurrent, ForceMode2D.Impulse);
+        bulletToSpawn.GetComponent<Bullet>().bulletDamage = ps.gunDamageCurrent;
+        bulletToSpawn.GetComponent<Bullet>().bulletSpeed = ps.gunSpeedCurrent;
+        bulletToSpawn.GetComponent <Bullet>().ps = ps;
+        bulletToSpawn.GetComponent<Bullet>().bulletLifetime = ps.gunLifetimeCurrent;
 
     }
 
+    IEnumerator FiringCooldown()
+    {
+        float t = 0;
+        while (t < ps.gunFireRateCurrent)
+        {
+            t += Time.deltaTime;
+            yield return null;
+        }
 
+        ps.isShooting = false;
+    }
 }
