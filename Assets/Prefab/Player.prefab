@@ -62,10 +62,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0
-    width: 1
-    height: 1
+    x: 0.21510418
+    y: 0.01111111
+    width: 0.33333334
+    height: 0.3333333
   near clip plane: 0.1
   far clip plane: 5000
   field of view: 40
@@ -278,6 +278,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &4670200806602511869
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6279648426052337977}
+  - component: {fileID: 6699692157637606864}
+  m_Layer: 6
+  m_Name: Weapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6279648426052337977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4670200806602511869}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2024484319102076079}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6699692157637606864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4670200806602511869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f76d731a3c98e24d8041a34cc83c724, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 0}
 --- !u!1 &7082229667147303669
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,6 +362,7 @@ Transform:
   m_Children:
   - {fileID: 2852310703382976603}
   - {fileID: 1882816070996603191}
+  - {fileID: 6279648426052337977}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -336,7 +382,8 @@ MonoBehaviour:
   playerDirection: {x: 0, y: 0}
   attackPos: {fileID: 0}
   savedDirection: {x: 0, y: 0}
-  crosshair: {fileID: 0}
+  crosshair: {fileID: 2800000, guid: 354a187fd053e224293fe60ceffa62e0, type: 3}
+  bulletPrefab: {fileID: 1908339963323981511, guid: ada04b2c537857648a9abbc9e7b639c9, type: 3}
 --- !u!114 &4537602045951159079
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,15 +425,25 @@ MonoBehaviour:
   swordCooldownLengthCurrent: 0
   swordCooldownLengthModifier: 0
   isAiming: 0
+  isShooting: 1
   gunDamageBase: 0
   gunDamageCurrent: 0
   gunDamageModifier: 0
   gunSpeedBase: 0
   gunSpeedCurrent: 0
   gunSpeedModifier: 0
+  gunFireRateBase: 0
+  gunFireRateCurrent: 0
+  gunFireRateModifier: 0
+  gunLifetimeBase: 0
+  gunLifetimeCurrent: 0
+  gunLifetimeModifier: 0
   reloadTimeBase: 0
   reloadTimeCurrent: 0
   reloadTimeModifier: 0
+  allColors: {x: 0, y: 0, z: 0, w: 0}
+  particleColor: {r: 0, g: 0, b: 0, a: 0}
+  numberOfBuffs: 0
 --- !u!50 &2101400580557356271
 Rigidbody2D:
   serializedVersion: 4

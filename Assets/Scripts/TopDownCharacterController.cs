@@ -22,7 +22,9 @@ public class TopDownCharacterController : MonoBehaviour
     private SpriteRenderer sR;
 
     //reference to attached PlayerStats custom script;
-    private PlayerStats ps;
+    public PlayerStats ps;
+
+    private Weapon weapon;
 
     //The direction the player is moving in
     [SerializeField] private Vector2 playerDirection;
@@ -31,7 +33,7 @@ public class TopDownCharacterController : MonoBehaviour
     
     #endregion
 
-    [SerializeField] private Vector2 savedDirection;
+    [SerializeField] public Vector2 savedDirection;
     [SerializeField] Texture2D crosshair;
     [SerializeField] GameObject bulletPrefab;
     /// <summary>
@@ -45,6 +47,7 @@ public class TopDownCharacterController : MonoBehaviour
         bC = GetComponent<BoxCollider2D>();
         sR = GetComponent<SpriteRenderer>();
         ps = GetComponent<PlayerStats>();
+        weapon = GetComponentInChildren<Weapon>();
     }
 
     /// <summary>
@@ -186,19 +189,19 @@ public class TopDownCharacterController : MonoBehaviour
         if((ps.isAiming && Input.GetAxisRaw("Shoot") == 1) && !ps.isShooting)
         {
             ps.isShooting = true;
-            StartCoroutine(FiringCooldown());
-            Fire(bulletPrefab, savedDirection, ps);
-            
+            weapon.Fire(bulletPrefab, transform.position, ps);
+
         }
     }
 
-    void Fire(GameObject bulletPrefab, Vector2 position, PlayerStats ps)
+    /*void Fire(GameObject bulletPrefab, Vector2 position, PlayerStats ps)
     {
+        Debug.Log("Firing!");
         GameObject bulletToSpawn = Instantiate(bulletPrefab, position, quaternion.identity);
         bulletToSpawn.GetComponent<Rigidbody2D>().AddForce(savedDirection.normalized * ps.gunSpeedCurrent, ForceMode2D.Impulse);
         bulletToSpawn.GetComponent<Bullet>().bulletDamage = ps.gunDamageCurrent;
         bulletToSpawn.GetComponent<Bullet>().bulletSpeed = ps.gunSpeedCurrent;
-        bulletToSpawn.GetComponent <Bullet>().ps = ps;
+        bulletToSpawn.GetComponent<Bullet>().owner = gameObject;
         bulletToSpawn.GetComponent<Bullet>().bulletLifetime = ps.gunLifetimeCurrent;
 
     }
@@ -213,5 +216,5 @@ public class TopDownCharacterController : MonoBehaviour
         }
 
         ps.isShooting = false;
-    }
+    }*/
 }

@@ -14,7 +14,7 @@ public class DamageAnimation : MonoBehaviour
         gameObject.SetActive(true);
         startLoc = gameObject.transform.position;
         endLoc = gameObject.transform.position;
-        endLoc.y -= 10 + (10 * damage);
+        endLoc.y -= 10 + (4 * damage);
 
         StartCoroutine(Wiggle());
 
