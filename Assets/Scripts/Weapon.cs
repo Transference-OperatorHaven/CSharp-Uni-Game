@@ -7,25 +7,30 @@ public class Weapon : MonoBehaviour
 {
     TopDownCharacterController controller;
     public Transform playerTransform;
-    [SerializeField] GameObject weaponPrefab;
+    [SerializeField] public GameObject activeWeapon;
+    [SerializeField] GameObject weaponDefault;
     [SerializeField]float offset;
+    [SerializeField] float gunStatFireRate, gunStatDamage, gunSpeedModifier;
     SpriteRenderer sr;
 
     private void Start()
     {
+        
         controller = gameObject.GetComponentInParent<TopDownCharacterController>();
         playerTransform = gameObject.GetComponentInParent<Transform>();
-        
-        GameObject weapon = Instantiate(weaponPrefab, transform);
-        sr = weapon.GetComponent<SpriteRenderer>();
+        ChangeWeaponPrefab(weaponDefault, 0.66f, 24f, 8);
+
+
+
     }
     // Update is called once per frame
     void Update()
     {
         transform.localPosition = controller.savedDirection * offset;
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
         float angle = Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.rotation = rotation;
 
         if(controller.ps.isAiming)
         {
@@ -63,6 +68,20 @@ public class Weapon : MonoBehaviour
         }
 
         controller.ps.isShooting = false;
+    }
+
+    public void ChangeWeaponPrefab(GameObject weaponPrefab, float firerate, float gunspeed, float gundamage)
+    {
+        if(activeWeapon !=  null)
+        {
+            Destroy(activeWeapon);
+        }
+        controller.GetComponent<PlayerStats>().gunFireRateBase = firerate;
+        controller.GetComponent<PlayerStats>().gunSpeedBase = gunspeed;
+        controller.GetComponent<PlayerStats>().gunDamageBase = gundamage;
+        controller.GetComponent<PlayerStats>().UpdateGunStats();
+        activeWeapon = Instantiate(weaponPrefab, transform);
+        sr = activeWeapon.GetComponent<SpriteRenderer>();
     }
 
 
