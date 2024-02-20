@@ -32,7 +32,7 @@ public class Bullet : MonoBehaviour
             {
                 Debug.Log("Hit!");
                 collision.gameObject.GetComponent<EnemyHealth>().ChangeHealth(bulletDamage);
-                if( owner.GetComponent<ComboSystem>() != null) { owner.GetComponent<ComboSystem>().ComboIncrease(bulletDamage); }
+                if( owner.GetComponentInParent<ComboSystem>() != null) { owner.GetComponentInParent<ComboSystem>().ComboIncrease(bulletDamage); }
                 
                 Destroy(gameObject);
             }
