@@ -67,7 +67,7 @@ public class TopDownCharacterController : MonoBehaviour
         //by the speed they're moving
         if (!ps.isDodging && !ps.isAiming)
         {
-            rb.velocity = playerDirection.normalized * (ps.playerSpeed * ps.playerSpeedMax) * Time.fixedDeltaTime;
+            rb.velocity = playerDirection.normalized * (ps.speed * ps.speedMax) * Time.fixedDeltaTime;
         }
     }
 
@@ -106,7 +106,7 @@ public class TopDownCharacterController : MonoBehaviour
             animator.SetFloat("Speed", (playerDirection.magnitude > 1) ? 1 : playerDirection.magnitude);
 
             //And set the speed to 1, so they move!
-            ps.playerSpeed = 1f;
+            ps.speed = 1f;
             
 
             if(Input.GetKey(KeyCode.U))
@@ -124,7 +124,7 @@ public class TopDownCharacterController : MonoBehaviour
         {
             //Was the input just cancelled (released)? If so, set
             //speed to 0
-            ps.playerSpeed = 0f;
+            ps.speed = 0f;
 
             //Update the animator too, and return if not dodging
             if (!ps.isDodging && !ps.isAiming && !ps.isAttacking)
@@ -183,8 +183,6 @@ public class TopDownCharacterController : MonoBehaviour
         playerToMouseVector = (transform.position - mousePosition) * -1;   
         playerDirection = playerToMouseVector.normalized;
         Cursor.SetCursor(crosshair, Vector2.zero, CursorMode.Auto);
-
-        animator.Play("gunTree");
         
         if((ps.isAiming && Input.GetAxisRaw("Shoot") == 1) && !ps.isShooting)
         {

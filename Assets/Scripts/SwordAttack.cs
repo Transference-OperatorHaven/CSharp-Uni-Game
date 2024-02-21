@@ -26,7 +26,7 @@ public class SwordAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!ps.isAttacking && !ps.isAiming)
+        if (!ps.isAttacking && !ps.isAiming && !ps.isDodging)
         {
             if (Input.GetAxisRaw("Attack") == 1)
             {

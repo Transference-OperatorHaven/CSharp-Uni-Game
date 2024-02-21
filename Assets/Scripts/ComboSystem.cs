@@ -89,8 +89,6 @@ public class ComboSystem : MonoBehaviour
         while (t < ComboDecayLengthCurrent)
         {
             t += Time.deltaTime;
-            Debug.Log(t);
-            Debug.Log(t / ComboDecayLengthCurrent);
             slider.value = 1 - (t / ComboDecayLengthCurrent);
 
             yield return null;

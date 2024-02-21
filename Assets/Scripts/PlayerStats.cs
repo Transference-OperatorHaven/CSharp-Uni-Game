@@ -9,12 +9,15 @@ public class PlayerStats : MonoBehaviour
 {
     // ! Health
     [Header("Health Variables")]
-    public float playerHealthCurrent;
-    public float playerHealthMax = 5;
+    public float healthCurrent;
+    public float healthMax;
+    public float invulnerabilityTime, invulnerabilityDuration;
+    Coroutine invulerable;
+    SpriteRenderer sr;
     // ! Speed Stuff
     [Header("Speed Variables")]
-    public float playerSpeed = 1;
-    public float playerSpeedMax = 100;
+    public float speed = 1;
+    public float speedMax = 100;
 
 
     // ! Abilities stuff
@@ -45,11 +48,54 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
+        UpdateHealthStats();
         UpdateDodgeStats();
         UpdateGunStats();
         UpdateSwordStats();
+        sr = GetComponentInParent<SpriteRenderer>();
         ps = GetComponentInParent<ParticleSystem>();
         psMain = ps.main;
+    }
+
+    public void UpdateHealthStats()
+    {
+        healthCurrent = healthMax;
+    }
+
+    public void ChangeHealth(float damage)
+    {
+        if (invulerable == null)
+        {
+            healthCurrent += damage;
+            StartCoroutine(Invulnerable());
+        }
+        
+        if (healthCurrent <= 0)
+        {
+            TriggerDeath();
+        }
+    }
+
+    IEnumerator Invulnerable()
+    {
+        float t = 0;
+        invulnerabilityTime = invulnerabilityDuration + Time.time;
+        while (t < invulnerabilityDuration)
+        {
+            sr.color = Color.gray;
+            t += Time.deltaTime;
+
+            gameObject.layer = 7;
+
+            yield return null;
+        }
+        sr.color = Color.white;
+        gameObject.layer = 6;
+    }
+
+    void TriggerDeath()
+    {
+        Debug.Log("Death!");
     }
 
     public void UpdateDodgeStats()
