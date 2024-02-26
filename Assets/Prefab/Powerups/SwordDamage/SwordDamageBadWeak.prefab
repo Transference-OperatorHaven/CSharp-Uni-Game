@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2139991891473993330}
   - component: {fileID: 1871333466981369450}
   m_Layer: 10
-  m_Name: ReloadTimeGoodStrong
+  m_Name: SwordDamageBadWeak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1424842919, guid: dc123e39c149cda408d64c8862598db2, type: 3}
-  m_Color: {r: 0.65900093, g: 0.2214756, b: 0.745283, a: 1}
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 0.32636172, g: 0.3584906, b: 0.35016087, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -143,10 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3798c6466e3744688027cf287c1ca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _statBuff: 10
+  _statBuff: 4
   duration: 10
-  strength: -0.7
-  Name: Major Reload Buff (10s)
-  Description: Reloading takes 70% less time for 10 seconds
+  strength: -1
+  Name: less dodge per dodge!
+  Description: take twice as long to recover from dodge
   permanent: 0
   textDisplay: {fileID: 0}

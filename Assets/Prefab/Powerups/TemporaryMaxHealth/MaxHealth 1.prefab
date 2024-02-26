@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2139991891473993330}
   - component: {fileID: 1871333466981369450}
   m_Layer: 10
-  m_Name: SwordDuration
+  m_Name: MaxHealth 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buffColour: {r: 1, g: 1, b: 1, a: 1}
-  _statBuff: 6
+  _statBuff: 1
   duration: 10
   strength: -1
   Name: less dodge per dodge!

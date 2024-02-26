@@ -38,14 +38,17 @@ public class PickUp : MonoBehaviour
 
     private void Start()
     {
-        if(FindObjectOfType<PowerupTextDisplay>() != null)
+        if (textDisplay == null)
         {
-            textDisplay = FindObjectOfType<PowerupTextDisplay>();
-            if(textDisplay != null)
-            {
-                Debug.Log("well done!");
-            }
+            textDisplay = PowerupTextDisplay.FindObjectOfType<PowerupTextDisplay>();
         }
+        
+        Debug.Log(textDisplay + gameObject.name);
+        if(textDisplay != null)
+        {
+            Debug.Log("well done!");
+        }
+    
         sr = GetComponent<SpriteRenderer>();
         bc = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
@@ -55,9 +58,6 @@ public class PickUp : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("collider?");
-        
-        Debug.Log("Collided!");
         ps = collision.gameObject.GetComponent<PlayerStats>();
         sr.enabled = false;
         bc.enabled = false;
@@ -114,7 +114,7 @@ public class PickUp : MonoBehaviour
 
     IEnumerator Health()
     {
-        ps.healthCurrent += strength;
+        ps.ChangeHealth(strength);
         yield return new WaitForSeconds(duration);
         ps.RemoveColor(buffColour);
         Destroy(gameObject);

@@ -73,7 +73,10 @@ public class PlayerStats : MonoBehaviour
             healthCurrent += val;
             StartCoroutine(Invulnerable());
         }
-        
+        if(healthCurrent > healthMax)
+        {
+            healthCurrent=healthMax;
+        }
         if (healthCurrent <= 0)
         {
             TriggerDeath();
@@ -126,7 +129,7 @@ public class PlayerStats : MonoBehaviour
     {
         swordRadiusCurrent = swordRadiusBase * (1 + swordRadiusModifier);
         swordDurationCurrent = swordDurationBase * (1 + swordDurationModifier);
-        swordCooldownLengthCurrent = swordCooldownLengthBase;
+        swordCooldownLengthCurrent = swordCooldownLengthBase * (1 + swordCooldownLengthModifier);
         swordDamageCurrent = swordDamageBase * (1 + swordDamageModifier);
     }
 
