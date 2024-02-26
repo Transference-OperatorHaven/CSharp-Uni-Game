@@ -8,8 +8,10 @@ public class EnemyHealth : MonoBehaviour
     public float maxHealth;
     public float invulerabilityTime;
     public float invulerabilityDuration;
+    public bool hurt;
     LayerMask startingLayer;
     SpriteRenderer sr;
+    Rigidbody2D rb;
 
 
     // Start is called before the first frame update
@@ -18,6 +20,7 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
         startingLayer = gameObject.layer;
         sr = gameObject.GetComponent<SpriteRenderer>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -31,6 +34,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void ChangeHealth(float val)
     {
+        hurt = true;
         currentHealth += val;
         if (invulerabilityTime < Time.time) { StartCoroutine(Invulerable()); }
     }
@@ -48,7 +52,10 @@ public class EnemyHealth : MonoBehaviour
 
             yield return null;
         }
+
+        
         sr.color = Color.white;
         gameObject.layer = startingLayer;
+        hurt = false;
     }
 }

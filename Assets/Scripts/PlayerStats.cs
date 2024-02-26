@@ -14,6 +14,9 @@ public class PlayerStats : MonoBehaviour
     public float invulnerabilityTime, invulnerabilityDuration;
     Coroutine invulerable;
     SpriteRenderer sr;
+    public static event System.Action OnPlayerDamaged;
+    public static event System.Action OnPlayerDeath;
+
     // ! Speed Stuff
     [Header("Speed Variables")]
     public float speed = 1;
@@ -46,7 +49,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField]int numberOfBuffs = 0;
     [SerializeField]ParticleSystem.MainModule psMain;
 
-    private void Start()
+    private void Awake()
     {
         UpdateHealthStats();
         UpdateDodgeStats();
@@ -62,11 +65,12 @@ public class PlayerStats : MonoBehaviour
         healthCurrent = healthMax;
     }
 
-    public void ChangeHealth(float damage)
+    public void ChangeHealth(float val)
     {
+        
         if (invulerable == null)
         {
-            healthCurrent += damage;
+            healthCurrent += val;
             StartCoroutine(Invulnerable());
         }
         
@@ -74,6 +78,7 @@ public class PlayerStats : MonoBehaviour
         {
             TriggerDeath();
         }
+        OnPlayerDamaged?.Invoke();
     }
 
     IEnumerator Invulnerable()
@@ -95,7 +100,9 @@ public class PlayerStats : MonoBehaviour
 
     void TriggerDeath()
     {
-        Debug.Log("Death!");
+        OnPlayerDeath?.Invoke();
+        Debug.Log("Deadth");
+        sr.color = Color.blue;
     }
 
     public void UpdateDodgeStats()
@@ -134,7 +141,6 @@ public class PlayerStats : MonoBehaviour
 
     public void SetParticleColor(Color color)
     {
-        Debug.Log(color);
         numberOfBuffs += 1;
         if(numberOfBuffs > 0)
         {

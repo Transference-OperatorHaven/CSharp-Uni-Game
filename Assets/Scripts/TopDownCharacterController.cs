@@ -158,7 +158,6 @@ public class TopDownCharacterController : MonoBehaviour
     private IEnumerator Dodge()
     {
         float t = 0;
-        Debug.Log("dodgeing!");
         ps.isDodging = true;
         ps.dodgeCooldown = Time.time + ps.dodgeCooldownLengthCurrent;
         while (t < ps.dodgeDuration)
@@ -177,7 +176,7 @@ public class TopDownCharacterController : MonoBehaviour
     private void InitiateAiming()
     {
         Vector2 playerToMouseVector;
-        
+        animator.Play("idleTree");
         rb.velocity = new Vector2 (0, 0);
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         playerToMouseVector = (transform.position - mousePosition) * -1;   

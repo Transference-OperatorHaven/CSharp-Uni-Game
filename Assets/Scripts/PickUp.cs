@@ -11,6 +11,7 @@ public class PickUp : MonoBehaviour
     public enum statBuff
     {
         health,
+        maxHealth,
         dodgeCooldown,
         dodgeVelocity,
         swordDamage,
@@ -22,78 +23,116 @@ public class PickUp : MonoBehaviour
         reloadTime
     }
 
-    public Color buffColour;
+    Color buffColour;
     int colorId;
     public statBuff _statBuff;
     [SerializeField] float duration;
     [SerializeField] float strength; //done as a decimal
     public string Name;
     public string Description;
+    public bool permanent = false;
     SpriteRenderer sr;
     BoxCollider2D bc;
+    Rigidbody2D rb;
     [SerializeField]PowerupTextDisplay textDisplay;
-    [SerializeField] LayerMask playerLayer = 6;
 
     private void Start()
     {
-        sr = GetComponent<SpriteRenderer>();
-        bc = GetComponent<BoxCollider2D>();
-    }
-
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.transform.gameObject.layer == playerLayer)
+        if(FindObjectOfType<PowerupTextDisplay>() != null)
         {
-            Debug.Log("Collided!");
-            ps = collision.gameObject.GetComponent<PlayerStats>();
-            sr.enabled = false;
-            bc.enabled = false;
-            textDisplay.DisplayPowerupInfo(Name, Description);
-            ps.SetParticleColor(buffColour);
-
-            switch (_statBuff)
+            textDisplay = FindObjectOfType<PowerupTextDisplay>();
+            if(textDisplay != null)
             {
-                case statBuff.health:
-                    StartCoroutine(Health());
-                    break;
-                case statBuff.dodgeCooldown:
-                    StartCoroutine(DodgeCooldown());
-                    break;
-                case statBuff.dodgeVelocity:
-                    StartCoroutine(DodgeVelocity());
-                    break;
-                case statBuff.swordDamage:
-                    StartCoroutine(SwordDamage());
-                    break;
-                case statBuff.swordRadius:
-                    StartCoroutine(SwordRadius());
-                    break;
-                case statBuff.swordDuration:
-                    StartCoroutine(SwordDuration());
-                    break;
-                case statBuff.swordCooldown:
-                    StartCoroutine(SwordCooldown());
-                    break;
-                case statBuff.gunDamage:
-                    StartCoroutine(GunDamage());
-                    break;
-                case statBuff.gunSpeed:
-                    StartCoroutine(GunSpeed());
-                    break;
-                case statBuff.reloadTime:
-                    StartCoroutine(ReloadTime());
-                    break;
+                Debug.Log("well done!");
             }
         }
-        
-        
+        sr = GetComponent<SpriteRenderer>();
+        bc = GetComponent<BoxCollider2D>();
+        rb = GetComponent<Rigidbody2D>();
+
+        buffColour = sr.color;
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("collider?");
+        
+        Debug.Log("Collided!");
+        ps = collision.gameObject.GetComponent<PlayerStats>();
+        sr.enabled = false;
+        bc.enabled = false;
+        textDisplay.DisplayPowerupInfo(Name, Description);
+        ps.SetParticleColor(buffColour);
+
+        switch (_statBuff)
+        {
+            case statBuff.health:
+                StartCoroutine(Health());
+                break;
+            case statBuff.maxHealth:
+                if (permanent)
+                {
+                    MaxHealthPermanent();
+                }
+                else
+                {
+                    StartCoroutine(MaxHealthTemp());
+                }
+                break;
+            case statBuff.dodgeCooldown:
+                StartCoroutine(DodgeCooldown());
+                break;
+            case statBuff.dodgeVelocity:
+                StartCoroutine(DodgeVelocity());
+                break;
+            case statBuff.swordDamage:
+                StartCoroutine(SwordDamage());
+                break;
+            case statBuff.swordRadius:
+                StartCoroutine(SwordRadius());
+                break;
+            case statBuff.swordDuration:
+                StartCoroutine(SwordDuration());
+                break;
+            case statBuff.swordCooldown:
+                StartCoroutine(SwordCooldown());
+                break;
+            case statBuff.gunDamage:
+                StartCoroutine(GunDamage());
+                break;
+            case statBuff.gunSpeed:
+                StartCoroutine(GunSpeed());
+                break;
+            case statBuff.reloadTime:
+                StartCoroutine(ReloadTime());
+                break;
+        }
+    
+     
+    }
+
 
     IEnumerator Health()
     {
         ps.healthCurrent += strength;
         yield return new WaitForSeconds(duration);
+        ps.RemoveColor(buffColour);
+        Destroy(gameObject);
+
+    }
+
+    void MaxHealthPermanent()
+    {
+        ps.healthMax += strength;
+        ps.ChangeHealth(strength);
+        ps.RemoveColor(buffColour);
+        Destroy(gameObject);
+    }
+    IEnumerator MaxHealthTemp()
+    {
+        ps.healthMax += strength;
+        yield return new WaitForSeconds(duration);
+        ps.healthMax -= strength;
         ps.RemoveColor(buffColour);
         Destroy(gameObject);
 

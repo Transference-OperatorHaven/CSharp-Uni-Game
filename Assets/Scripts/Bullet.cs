@@ -28,11 +28,17 @@ public class Bullet : MonoBehaviour
         if (collision != null)
         {
             
-            if (collision.gameObject.layer == 8)
+            if (collision.gameObject.layer == 8 || collision.gameObject.layer == 3)
             {
-                Debug.Log("Hit!");
-                collision.gameObject.GetComponent<EnemyHealth>().ChangeHealth(bulletDamage);
-                if( owner.GetComponentInParent<ComboSystem>() != null) { owner.GetComponentInParent<ComboSystem>().ComboIncrease(bulletDamage); }
+                if (collision.gameObject.GetComponent<EnemyHealth>() != null)
+                {
+                    collision.gameObject.GetComponent<EnemyHealth>().ChangeHealth(bulletDamage);
+                    if (owner.GetComponentInParent<ComboSystem>() != null) 
+                    { 
+                        owner.GetComponentInParent<ComboSystem>().ComboIncrease(bulletDamage); 
+                    }
+                }
+                
                 
                 Destroy(gameObject);
             }

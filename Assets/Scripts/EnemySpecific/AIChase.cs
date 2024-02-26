@@ -16,29 +16,36 @@ public class AIChase : MonoBehaviour
     [SerializeField] float attackRadius;
     [SerializeField] LayerMask playerLayer;
     Rigidbody2D rb;
+    public EnemyHealth eH;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        eH = GetComponent<EnemyHealth>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        attackPos.localPosition = (rb.velocity.normalized * offset);
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, detectionRadius, transform.forward, 2, playerLayer);
+        if (!eH.hurt)
+        {
+            attackPos.localPosition = (rb.velocity.normalized * offset);
+            RaycastHit2D hit = Physics2D.CircleCast(transform.position, detectionRadius, transform.forward, 2, playerLayer);
 
-        if(hit)
-        {
-            player = hit.transform.gameObject;
-            transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+            if (hit)
+            {
+                player = hit.transform.gameObject;
+                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+                //rb.AddForce((player.transform.position - transform.position).normalized, ForceMode2D.Force);
+            }
+            RaycastHit2D attackHit = Physics2D.CircleCast(attackPos.position, attackRadius, transform.forward, 0, playerLayer);
+            if (attackHit)
+            {
+                player = attackHit.transform.gameObject;
+                player.GetComponent<PlayerStats>().ChangeHealth(damage);
+            }
         }
-        RaycastHit2D attackHit = Physics2D.CircleCast(attackPos.position, attackRadius, transform.forward, 0 , playerLayer);
-        if(attackHit)
-        {
-            player = attackHit.transform.gameObject;
-            player.GetComponent<PlayerStats>().ChangeHealth(damage);
-        }
+        
     }
 
     private void OnDrawGizmos()

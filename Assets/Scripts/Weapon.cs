@@ -18,7 +18,7 @@ public class Weapon : MonoBehaviour
         
         controller = gameObject.GetComponentInParent<TopDownCharacterController>();
         playerTransform = gameObject.GetComponentInParent<Transform>();
-        ChangeWeaponPrefab(weaponDefault, 0.66f, 24f, 8);
+        ChangeWeaponPrefab(weaponDefault, 0.66f, 24f, -8);
 
 
 
@@ -48,7 +48,6 @@ public class Weapon : MonoBehaviour
     public void Fire(GameObject bulletPrefab, Vector2 position, PlayerStats ps)
     {
         StartCoroutine(FiringCooldown());
-        Debug.Log("Firing!");
         GameObject bulletToSpawn = Instantiate(bulletPrefab, position, Quaternion.identity);
         bulletToSpawn.GetComponent<Rigidbody2D>().AddForce(controller.savedDirection.normalized * ps.gunSpeedCurrent, ForceMode2D.Impulse);
         bulletToSpawn.GetComponent<Bullet>().bulletDamage = ps.gunDamageCurrent;
