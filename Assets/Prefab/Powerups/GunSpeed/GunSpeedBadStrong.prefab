@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 940521524, guid: 77aa7ade8a2613548ae34bd787782aed, type: 3}
   m_Color: {r: 0.5, g: 0.35126066, b: 0.115566045, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   _statBuff: 9
   duration: 5
   strength: -0.5
-  Name: Major Rate of Fire Nerf (5s)
-  Description: 50% slower Rate of Fire for 5 seconds
+  Name: Major Bullet Speed Nerf (5s)
+  Description: 50% slower bullets for 5 seconds
   permanent: 0
   textDisplay: {fileID: 0}

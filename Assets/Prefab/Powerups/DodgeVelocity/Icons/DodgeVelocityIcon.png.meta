@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: efbc9286132274a478d2aeb899eb8919
+guid: 76a56578bd2283d4b8a402f2e8c66b0b
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,37 +106,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DodgeCDIcon_0
+      name: DodgeVelocityIcon_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7372fb79d9ab8094a81c5c1cf35f166b
-      internalID: -1578562693
+      spriteID: 6edc0115343eff04b898463e625f03e9
+      internalID: -1955878340
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DodgeCDIcon_1
+      name: DodgeVelocityIcon_1
       rect:
         serializedVersion: 2
         x: 16
@@ -171,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f9aa9b649863c147a9ca61f75d5879b
-      internalID: 600797056
+      spriteID: 6795f9fbfbeebd545a30e9f80e9f76a2
+      internalID: -1114134872
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DodgeCDIcon_2
+      name: DodgeVelocityIcon_2
       rect:
         serializedVersion: 2
         x: 32
@@ -192,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69e0bc2e3c4bb9e4e91e9989fffd9fcb
-      internalID: 1432249860
+      spriteID: 8d4b23ce75ad1cd4793f47a3eb942078
+      internalID: -2093561894
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DodgeCDIcon_3
+      name: DodgeVelocityIcon_3
       rect:
         serializedVersion: 2
         x: 48
@@ -213,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4dd885e3d06b60c4983a75eb77b52ea6
-      internalID: 1019429243
+      spriteID: 70dcd665b8d3e9c43b99f931bc3a4e26
+      internalID: 315246604
       vertices: []
       indices: 
       edges: []
@@ -230,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      DodgeCDIcon_0: -1578562693
-      DodgeCDIcon_1: 600797056
-      DodgeCDIcon_2: 1432249860
-      DodgeCDIcon_3: 1019429243
+      DodgeVelocityIcon_0: -1955878340
+      DodgeVelocityIcon_1: -1114134872
+      DodgeVelocityIcon_2: -2093561894
+      DodgeVelocityIcon_3: 315246604
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

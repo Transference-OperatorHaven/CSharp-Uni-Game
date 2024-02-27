@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: efbc9286132274a478d2aeb899eb8919
+guid: 1107efdbc08eaf54cb1e7855c9acd2cf
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -106,37 +106,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: DodgeCDIcon_0
+      name: HealthIcon_0
       rect:
         serializedVersion: 2
         x: 0
@@ -150,14 +124,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7372fb79d9ab8094a81c5c1cf35f166b
-      internalID: -1578562693
+      spriteID: bf462dc42a9da1845b9bb874515b485f
+      internalID: -625833143
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DodgeCDIcon_1
+      name: HealthIcon_1
       rect:
         serializedVersion: 2
         x: 16
@@ -171,14 +145,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f9aa9b649863c147a9ca61f75d5879b
-      internalID: 600797056
+      spriteID: 1e8d3dcfead5cec45b9af50178b43e9a
+      internalID: -1940571219
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DodgeCDIcon_2
+      name: HealthIcon_2
       rect:
         serializedVersion: 2
         x: 32
@@ -192,14 +166,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 69e0bc2e3c4bb9e4e91e9989fffd9fcb
-      internalID: 1432249860
+      spriteID: 322f96124f8bf3e4aad9c2ac0f5bede4
+      internalID: -1013531799
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DodgeCDIcon_3
+      name: HealthIcon_3
       rect:
         serializedVersion: 2
         x: 48
@@ -213,8 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4dd885e3d06b60c4983a75eb77b52ea6
-      internalID: 1019429243
+      spriteID: c2c3b8872d655ef41a6ac617799cecd4
+      internalID: -573560484
       vertices: []
       indices: 
       edges: []
@@ -230,10 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      DodgeCDIcon_0: -1578562693
-      DodgeCDIcon_1: 600797056
-      DodgeCDIcon_2: 1432249860
-      DodgeCDIcon_3: 1019429243
+      HealthIcon_0: -625833143
+      HealthIcon_1: -1940571219
+      HealthIcon_2: -1013531799
+      HealthIcon_3: -573560484
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

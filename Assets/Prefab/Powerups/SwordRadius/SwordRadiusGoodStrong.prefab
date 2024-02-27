@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2139991891473993330}
   - component: {fileID: 1871333466981369450}
   m_Layer: 10
-  m_Name: SwordRadius 2
+  m_Name: SwordRadiusGoodStrong
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 949458186, guid: c270ffca384619b4898ec00e833d8d32, type: 3}
+  m_Color: {r: 0.32942674, g: 0.29810432, b: 0.7264151, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -143,14 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3798c6466e3744688027cf287c1ca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buffColour: {r: 1, g: 1, b: 1, a: 1}
   _statBuff: 5
-  duration: 10
-  strength: -1
-  Name: less dodge per dodge!
-  Description: take twice as long to recover from dodge
+  duration: 5
+  strength: 0.5
+  Name: Major Sword Range Buff (5s)
+  Description: Range of the sword is 50% larger for 5 seconds
   permanent: 0
   textDisplay: {fileID: 0}
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64

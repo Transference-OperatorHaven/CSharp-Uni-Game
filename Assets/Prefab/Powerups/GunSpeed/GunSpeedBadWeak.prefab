@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -1438956883, guid: 77aa7ade8a2613548ae34bd787782aed, type: 3}
   m_Color: {r: 0.4528302, g: 0.37409753, b: 0.24563903, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   _statBuff: 9
   duration: 8
   strength: -0.1
-  Name: Minor Rate of Fire Nerf (8s)
-  Description: 10% less Rate of Fire for 8 seconds
+  Name: Minor Bullet Speed Nerf (8s)
+  Description: 10% less bullet speed for 8 seconds
   permanent: 0
   textDisplay: {fileID: 0}
