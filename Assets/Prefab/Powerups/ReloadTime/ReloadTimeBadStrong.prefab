@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3798c6466e3744688027cf287c1ca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _statBuff: 10
+  _statBuff: 11
   duration: 8
   strength: 0.5
   Name: Major Reload Nerf (8s)

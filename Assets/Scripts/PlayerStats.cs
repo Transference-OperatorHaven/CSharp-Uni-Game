@@ -39,7 +39,9 @@ public class PlayerStats : MonoBehaviour
     [Header("Shoot Variables")]
     public bool isAiming = false;
     public bool isShooting = true;
-    public float gunDamageBase, gunDamageCurrent, gunDamageModifier, gunSpeedBase, gunSpeedCurrent, gunSpeedModifier, gunFireRateBase, gunFireRateCurrent, gunFireRateModifier, gunLifetimeBase, gunLifetimeCurrent, gunLifetimeModifier;
+    public bool canSpecialReload, specialReloadActive;
+    public float gunDamageBase, gunDamageCurrent, gunDamageModifier, gunSpeedBase, gunSpeedCurrent, gunSpeedModifier, gunFireRateBase, gunFireRateCurrent, gunFireRateModifier, gunMagBase, gunMagCurrent, gunMagModifier, gunLifetimeBase, gunLifetimeCurrent, gunLifetimeModifier;
+    public float specialReloadRoundsCutOff;
     public float reloadTimeBase, reloadTimeCurrent, reloadTimeModifier;
 
     [Header("Particles")]
@@ -51,6 +53,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
+
         UpdateHealthStats();
         UpdateDodgeStats();
         UpdateGunStats();
@@ -65,13 +68,17 @@ public class PlayerStats : MonoBehaviour
         healthCurrent = healthMax;
     }
 
-    public void ChangeHealth(float val)
+    public void ChangeHealth(float val, bool triggerInvul)
     {
         
         if (invulerable == null)
         {
             healthCurrent += val;
-            StartCoroutine(Invulnerable());
+            if(triggerInvul)
+            {
+                StartCoroutine(Invulnerable());
+            }
+            
         }
         if(healthCurrent > healthMax)
         {
@@ -123,6 +130,8 @@ public class PlayerStats : MonoBehaviour
         gunFireRateCurrent = gunFireRateBase * (1 + gunFireRateModifier);
         gunLifetimeCurrent = gunLifetimeBase * (1 + gunLifetimeModifier);
         reloadTimeCurrent = reloadTimeBase * (1 + reloadTimeModifier);
+        gunMagCurrent = gunMagBase * (1 + gunMagModifier);
+        specialReloadRoundsCutOff = gunMagBase * 0.875f;
     }
 
     public void UpdateSwordStats()

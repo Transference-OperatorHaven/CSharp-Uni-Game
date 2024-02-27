@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2139991891473993330}
   - component: {fileID: 1871333466981369450}
   m_Layer: 10
-  m_Name: SwordDurationGoodStrong
+  m_Name: GunRoFGoodStrong
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1543441597, guid: ee8c79836df2b2c4b811d5c1aa0438b6, type: 3}
-  m_Color: {r: 0.9137255, g: 0.09019608, b: 0.76019335, a: 1}
+  m_Sprite: {fileID: 1372026924, guid: 03bf7f625cc3c574d970ad38987e53c7, type: 3}
+  m_Color: {r: 0.16862746, g: 0.8202935, b: 0.8392157, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -143,10 +143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3798c6466e3744688027cf287c1ca6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _statBuff: 6
-  duration: 7
-  strength: 0.25
-  Name: Major Sword Active Buff (8s)
-  Description: Your sword remains active for 25% longer after a swing for 8 seconds
+  _statBuff: 10
+  duration: 4
+  strength: -0.75
+  Name: Major Gun Rate of Fire Buff (4s)
+  Description: Guns shoot 75% faster for 4 seconds
   permanent: 0
   textDisplay: {fileID: 0}

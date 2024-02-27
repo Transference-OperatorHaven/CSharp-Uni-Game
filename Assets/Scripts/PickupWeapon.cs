@@ -5,13 +5,13 @@ using UnityEngine;
 public class PickupWeapon : MonoBehaviour
 {
     [SerializeField] GameObject weapon;
-    [SerializeField] float fireRate, gunSpeed, damage;
+    [SerializeField] float fireRate, gunSpeed, damage, lifetime, magSize, reloadTime;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponentInChildren<Weapon>() != null)
         {
-            collision.gameObject.GetComponentInChildren<Weapon>().ChangeWeaponPrefab(weapon, fireRate, gunSpeed, damage);
+            collision.gameObject.GetComponentInChildren<Weapon>().ChangeWeaponPrefab(weapon, fireRate, gunSpeed, damage, lifetime, magSize, reloadTime);
             Destroy(gameObject);
         }
        

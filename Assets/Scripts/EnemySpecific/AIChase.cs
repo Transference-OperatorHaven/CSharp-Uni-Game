@@ -34,15 +34,23 @@ public class AIChase : MonoBehaviour
 
             if (hit)
             {
-                player = hit.transform.gameObject;
-                transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+                RaycastHit2D lineOfSight = Physics2D.Raycast(transform.position, hit.transform.position, detectionRadius, 3);
+                if (!lineOfSight) 
+                {
+                    Debug.Log("LoS!");
+
+                    player = hit.transform.gameObject;
+                    transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+
+                }
+                
                 //rb.AddForce((player.transform.position - transform.position).normalized, ForceMode2D.Force);
             }
             RaycastHit2D attackHit = Physics2D.CircleCast(attackPos.position, attackRadius, transform.forward, 0, playerLayer);
             if (attackHit)
             {
                 player = attackHit.transform.gameObject;
-                player.GetComponent<PlayerStats>().ChangeHealth(damage);
+                player.GetComponent<PlayerStats>().ChangeHealth(damage, true);
             }
         }
         

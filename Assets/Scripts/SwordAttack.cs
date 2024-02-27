@@ -42,7 +42,6 @@ public class SwordAttack : MonoBehaviour
     private IEnumerator Attack()
     {
         float t = 0;
-        Debug.Log("swording!");
 
         ps.isAttacking = true;
         ps.swordCooldown = Time.time + ps.swordCooldownLengthCurrent;
@@ -53,7 +52,6 @@ public class SwordAttack : MonoBehaviour
             objectsHit = Physics2D.OverlapCircleAll(attackPos.position, ps.swordRadiusCurrent, swordLayer);
             if (objectsHit.Length > 0)
             {
-                Debug.Log(objectsHit.Length + "objects hit!");
                 foreach (Collider2D hit in objectsHit)
                 {
                     combo.ComboIncrease(ps.swordDamageCurrent);

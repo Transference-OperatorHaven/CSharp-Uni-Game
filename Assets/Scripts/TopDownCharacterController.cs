@@ -96,8 +96,12 @@ public class TopDownCharacterController : MonoBehaviour
                 }
             }
         }
-    
 
+        if ((Input.GetAxisRaw("reload") == 1) && !ps.isShooting && !weapon.reloading && (ps.gunMagCurrent != ps.gunMagBase))
+        {
+            weapon.StartReload();
+
+        }
         // check if there is some movement direction, if there is something, then set animator flags and make speed = 1
         if (playerDirection.magnitude != 0)
         {
@@ -189,6 +193,7 @@ public class TopDownCharacterController : MonoBehaviour
             weapon.Fire(bulletPrefab, transform.position, ps);
 
         }
+        
     }
 
     /*void Fire(GameObject bulletPrefab, Vector2 position, PlayerStats ps)

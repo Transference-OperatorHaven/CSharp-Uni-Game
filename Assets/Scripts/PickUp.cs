@@ -20,6 +20,7 @@ public class PickUp : MonoBehaviour
         swordCooldown,
         gunDamage,
         gunSpeed,
+        gunRoF,
         reloadTime
     }
 
@@ -36,17 +37,12 @@ public class PickUp : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField]PowerupTextDisplay textDisplay;
 
-    private void Start()
+    private void Awake()
     {
-        if (textDisplay == null)
+        textDisplay = PowerupTextDisplay.FindAnyObjectByType<PowerupTextDisplay>();
+        if(!textDisplay)
         {
-            textDisplay = PowerupTextDisplay.FindObjectOfType<PowerupTextDisplay>();
-        }
-        
-        Debug.Log(textDisplay + gameObject.name);
-        if(textDisplay != null)
-        {
-            Debug.Log("well done!");
+            Debug.Log("didnt find");
         }
     
         sr = GetComponent<SpriteRenderer>();
@@ -103,6 +99,9 @@ public class PickUp : MonoBehaviour
             case statBuff.gunSpeed:
                 StartCoroutine(GunSpeed());
                 break;
+            case statBuff.gunRoF:
+                StartCoroutine(GunRoF());
+                break;
             case statBuff.reloadTime:
                 StartCoroutine(ReloadTime());
                 break;
@@ -114,7 +113,7 @@ public class PickUp : MonoBehaviour
 
     IEnumerator Health()
     {
-        ps.ChangeHealth(strength);
+        ps.ChangeHealth(strength, false);
         yield return new WaitForSeconds(duration);
         ps.RemoveColor(buffColour);
         Destroy(gameObject);
@@ -124,15 +123,17 @@ public class PickUp : MonoBehaviour
     void MaxHealthPermanent()
     {
         ps.healthMax += strength;
-        ps.ChangeHealth(strength);
+        ps.ChangeHealth(strength, false);
         ps.RemoveColor(buffColour);
         Destroy(gameObject);
     }
     IEnumerator MaxHealthTemp()
     {
         ps.healthMax += strength;
+        ps.ChangeHealth(strength, false);
         yield return new WaitForSeconds(duration);
         ps.healthMax -= strength;
+        ps.ChangeHealth(-strength, false);
         ps.RemoveColor(buffColour);
         Destroy(gameObject);
 
@@ -221,6 +222,17 @@ public class PickUp : MonoBehaviour
         ps.UpdateGunStats();
         yield return new WaitForSeconds(duration);
         ps.gunSpeedModifier -= strength;
+        ps.UpdateGunStats();
+        ps.RemoveColor(buffColour);
+        Destroy(gameObject);
+    }
+
+    IEnumerator GunRoF()
+    {
+        ps.gunFireRateModifier += strength;
+        ps.UpdateGunStats();
+        yield return new WaitForSeconds(duration);
+        ps.gunFireRateModifier -= strength;
         ps.UpdateGunStats();
         ps.RemoveColor(buffColour);
         Destroy(gameObject);
