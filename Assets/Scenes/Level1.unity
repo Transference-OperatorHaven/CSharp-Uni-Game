@@ -49895,10 +49895,30 @@ PrefabInstance:
       propertyPath: m_StoppingDistance
       value: 1.2
       objectReference: {fileID: 0}
+    - target: {fileID: 2896941861730624233, guid: da05744ef16390d419caec769b420fae, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2896941861730624233, guid: da05744ef16390d419caec769b420fae, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6061108630753810450, guid: da05744ef16390d419caec769b420fae, type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 1315972590}
+    - target: {fileID: 6061108630753810450, guid: da05744ef16390d419caec769b420fae, type: 3}
+      propertyPath: attackDamage
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061108630753810450, guid: da05744ef16390d419caec769b420fae, type: 3}
+      propertyPath: attackSize.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6061108630753810450, guid: da05744ef16390d419caec769b420fae, type: 3}
+      propertyPath: attackSize.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6301680343393699318, guid: da05744ef16390d419caec769b420fae, type: 3}
       propertyPath: m_Name
       value: Enemy w_ NavMesh AI
@@ -49909,11 +49929,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7085093392800594959, guid: da05744ef16390d419caec769b420fae, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.82
+      value: -5.63
       objectReference: {fileID: 0}
     - target: {fileID: 7085093392800594959, guid: da05744ef16390d419caec769b420fae, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.33
+      value: -1.82
       objectReference: {fileID: 0}
     - target: {fileID: 7085093392800594959, guid: da05744ef16390d419caec769b420fae, type: 3}
       propertyPath: m_LocalPosition.z
