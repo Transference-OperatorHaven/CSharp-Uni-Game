@@ -163,6 +163,7 @@ public class TopDownCharacterController : MonoBehaviour
     {
         float t = 0;
         ps.isDodging = true;
+        gameObject.layer = 7;
         ps.dodgeCooldown = Time.time + ps.dodgeCooldownLengthCurrent;
         while (t < ps.dodgeDuration)
         {
@@ -175,6 +176,7 @@ public class TopDownCharacterController : MonoBehaviour
         }
         rb.velocity = savedDirection * 0;
         ps.isDodging = false;
+        gameObject.layer = 6;
     }
 
     private void InitiateAiming()

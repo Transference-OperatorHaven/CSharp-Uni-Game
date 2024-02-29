@@ -65,4 +65,10 @@ public class SwordAttack : MonoBehaviour
         
 
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(attackPos.position, (ps == null) ? 0.5f : ps.swordRadiusCurrent);
+    }
 }

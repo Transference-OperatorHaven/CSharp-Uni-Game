@@ -6,31 +6,36 @@ using UnityEngine.AI;
 
 public class NavMeshFollow : MonoBehaviour
 {
-    [Header("Target (should be player)")]
+
     public Transform target;
     NavMeshAgent agent;
+    Animator animator;
+    [Header("AttackVariables")]
     bool isAttacking;
-    [Header("Attack Variables")]
+    public Transform attackPos;
     public Vector2 attackSize;
     public float attackRange;
     public float attackDamage;
-    int attackPoint;
     // Start is called before the first frame update
     void Start()
     {
+        animator = GetComponentInChildren<Animator>();
         agent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+        animator.SetFloat("Speed", agent.speed);
         if (!isAttacking)
         {
+            transform.rotation = transform.position.x > target.position.x ? Quaternion.Euler(0, 180, 0) : Quaternion.Euler(0, 0, 0);
             agent.SetDestination(target.position);  
         }
-        attackPoint = transform.position.x > target.position.x ? -1 : 1;
-        if (agent.remainingDistance <= agent.stoppingDistance)
+        if (agent.remainingDistance <= agent.stoppingDistance && !isAttacking)
         {
+            
             isAttacking = true;
             StartCoroutine(Attack());
         }
@@ -39,29 +44,31 @@ public class NavMeshFollow : MonoBehaviour
 
     IEnumerator Attack()
     {
+
         yield return new WaitForSeconds(0.5f);
-        Vector2 distance = transform.position - target.position;
-        float angleOfAttack = Mathf.Atan2(distance.x, distance.y) * Mathf.Rad2Deg;
-        
+        animator.SetBool("Attacking", true);
+        Vector2 distance = transform.position - target.position;;
         float t = 0;
-        while(t < 0.33f)
+        while(t < 0.583f)
         {
             t += Time.deltaTime;
-            RaycastHit2D hit = Physics2D.BoxCast(transform.position, attackSize, angleOfAttack, transform.forward * attackPoint, attackRange, 6);
+            RaycastHit2D hit = Physics2D.BoxCast(attackPos.position, attackSize, 0, transform.right);
             if (hit)
             {
+                Debug.Log("hit!");
                 hit.transform.GetComponent<PlayerStats>().ChangeHealth(attackDamage, true);
             }
         }
         
         yield return new WaitForSeconds(1f);
         isAttacking=false;
+        animator.SetBool("Attacking", false);
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireCube(transform.position + transform.forward * attackPoint, attackSize);
+        Gizmos.DrawWireCube(attackPos.position, attackSize);
     }
 
 }
