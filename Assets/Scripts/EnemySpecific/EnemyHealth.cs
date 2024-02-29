@@ -8,7 +8,7 @@ public class EnemyHealth : MonoBehaviour
     public float maxHealth;
     public float invulerabilityTime;
     public float invulerabilityDuration;
-    public bool hurt;
+    public bool hurt, dead;
     LayerMask startingLayer;
     SpriteRenderer sr;
     Rigidbody2D rb;
@@ -41,7 +41,7 @@ public class EnemyHealth : MonoBehaviour
             {
                 loot.GetRandomBuff();
             }
-            Destroy(gameObject);
+            dead = true;
         }
     }
 
@@ -58,7 +58,6 @@ public class EnemyHealth : MonoBehaviour
         invulerabilityTime = invulerabilityDuration + Time.time;
         while (t < invulerabilityDuration)
         {
-            sr.color = Color.black;
             t += Time.deltaTime;
 
             gameObject.layer = 7;
@@ -67,7 +66,6 @@ public class EnemyHealth : MonoBehaviour
         }
 
         
-        sr.color = Color.white;
         gameObject.layer = startingLayer;
         hurt = false;
     }
