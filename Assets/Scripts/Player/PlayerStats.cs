@@ -59,8 +59,8 @@ public class PlayerStats : MonoBehaviour
         UpdateDodgeStats();
         UpdateGunStats();
         UpdateSwordStats();
-        sr = GetComponentInParent<SpriteRenderer>();
-        ps = GetComponentInParent<ParticleSystem>();
+        sr = GetComponentInChildren<SpriteRenderer>();
+        ps = GetComponentInChildren<ParticleSystem>();
         psMain = ps.main;
     }
 

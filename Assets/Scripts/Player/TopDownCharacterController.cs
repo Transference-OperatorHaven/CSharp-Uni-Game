@@ -36,7 +36,7 @@ public class TopDownCharacterController : MonoBehaviour
     [SerializeField] public Vector2 savedDirection;
     [SerializeField] Texture2D crosshair;
     [SerializeField] GameObject bulletPrefab;
-    [SerializeField] Camera cam;
+    public Camera cam;
     /// <summary>
     /// When the script first initialises this gets called, use this for grabbing componenets
     /// </summary>
@@ -185,9 +185,9 @@ public class TopDownCharacterController : MonoBehaviour
         Vector2 playerToMouseVector;
         animator.Play("idleTree");
         rb.velocity = new Vector2 (0, 0);
-        Vector3 mousePosition = cam.ScreenToWorldPoint(Input.mousePosition);
-        playerToMouseVector = (transform.position - mousePosition);
-        playerDirection = playerToMouseVector.normalized;
+        Vector3 mousePosition = cam.ScreenToWorldPoint(Input.mousePosition + new Vector3(0, 0, -10f));
+        playerToMouseVector = (mousePosition-transform.position);
+        playerDirection = playerToMouseVector.normalized * -1;
         Cursor.SetCursor(crosshair, Vector2.zero, CursorMode.Auto);
         
         

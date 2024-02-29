@@ -32,10 +32,11 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         transform.localPosition = controller.savedDirection * offset;
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - activeWeapon.transform.position;
+        Vector3 mousePosition = transform.position - controller.cam.ScreenToWorldPoint(Input.mousePosition);
         float angle = Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
         Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        transform.rotation = rotation;
+        transform.localRotation = rotation;
+        
 
         if(controller.ps.isAiming)
         {

@@ -62,6 +62,7 @@ public class NavMeshFollow : MonoBehaviour
             if (eH.hurt)
             {
                 animator.Play("Hurt");
+                
             }
             if (eH.dead)
             {
