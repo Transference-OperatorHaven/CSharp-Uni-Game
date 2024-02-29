@@ -32,17 +32,19 @@ public class PickUp : MonoBehaviour
     public string Name;
     public string Description;
     public bool permanent = false;
+    public bool pickedUp;
     SpriteRenderer sr;
     BoxCollider2D bc;
     Rigidbody2D rb;
     [SerializeField]PowerupTextDisplay textDisplay;
+    GameObject textUIObject;
 
-    private void Awake()
+    private void Start()
     {
-        textDisplay = PowerupTextDisplay.FindAnyObjectByType<PowerupTextDisplay>();
+        textDisplay = (PowerupTextDisplay)FindFirstObjectByType<PowerupTextDisplay>(FindObjectsInactive.Include);
         if(!textDisplay)
         {
-            Debug.Log("didnt find");
+            Debug.Log("didnt find" + gameObject.name);
         }
     
         sr = GetComponent<SpriteRenderer>();
@@ -50,10 +52,12 @@ public class PickUp : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         buffColour = sr.color;
+        StartCoroutine(CheckPickUp());
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        pickedUp = true;
         ps = collision.gameObject.GetComponent<PlayerStats>();
         sr.enabled = false;
         bc.enabled = false;
@@ -110,6 +114,14 @@ public class PickUp : MonoBehaviour
      
     }
 
+    IEnumerator CheckPickUp()
+    {
+        yield return new WaitForSeconds(8);
+        if (!pickedUp && gameObject.name.Contains("(Clone)"))
+        {
+            Destroy(gameObject);
+        }
+    }
 
     IEnumerator Health()
     {

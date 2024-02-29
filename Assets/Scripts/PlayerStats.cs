@@ -39,7 +39,8 @@ public class PlayerStats : MonoBehaviour
     [Header("Shoot Variables")]
     public bool isAiming = false;
     public bool isShooting = true;
-    public bool canSpecialReload, specialReloadActive;
+    public bool canSpecialReload = true; 
+    public bool specialReloadActive;
     public float gunDamageBase, gunDamageCurrent, gunDamageModifier, gunSpeedBase, gunSpeedCurrent, gunSpeedModifier, gunFireRateBase, gunFireRateCurrent, gunFireRateModifier, gunMagBase, gunMagCurrent, gunMagModifier, gunLifetimeBase, gunLifetimeCurrent, gunLifetimeModifier;
     public float specialReloadRoundsCutOff;
     public float reloadTimeBase, reloadTimeCurrent, reloadTimeModifier;

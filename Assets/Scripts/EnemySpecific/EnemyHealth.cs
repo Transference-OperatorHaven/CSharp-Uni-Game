@@ -12,6 +12,7 @@ public class EnemyHealth : MonoBehaviour
     LayerMask startingLayer;
     SpriteRenderer sr;
     Rigidbody2D rb;
+    LootDrop loot;
 
 
     // Start is called before the first frame update
@@ -19,8 +20,16 @@ public class EnemyHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
         startingLayer = gameObject.layer;
-        sr = gameObject.GetComponent<SpriteRenderer>();
+        if(gameObject.GetComponent<SpriteRenderer>() != null )
+        {
+            sr = gameObject.GetComponent<SpriteRenderer>();
+        }
+       else if (gameObject.GetComponentInChildren<SpriteRenderer>() != null )
+        {
+            sr = gameObject.GetComponentInChildren<SpriteRenderer>();
+        }
         rb = gameObject.GetComponent<Rigidbody2D>();
+        loot = gameObject.GetComponent<LootDrop>();
     }
 
     // Update is called once per frame
@@ -28,6 +37,10 @@ public class EnemyHealth : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
+            if(loot != null)
+            {
+                loot.GetRandomBuff();
+            }
             Destroy(gameObject);
         }
     }

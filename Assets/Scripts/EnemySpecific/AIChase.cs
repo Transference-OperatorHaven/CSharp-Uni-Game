@@ -37,7 +37,6 @@ public class AIChase : MonoBehaviour
                 RaycastHit2D lineOfSight = Physics2D.Raycast(transform.position, hit.transform.position, detectionRadius, 3);
                 if (!lineOfSight) 
                 {
-                    Debug.Log("LoS!");
 
                     player = hit.transform.gameObject;
                     transform.position = Vector2.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
