@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Powerup
+  - Fireball
+  - Explosion
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - Enemy
   - Bullet
   - Buffs
-  - 
+  - EnemyAttack
   - 
   - 
   - 

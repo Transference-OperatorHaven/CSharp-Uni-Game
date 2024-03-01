@@ -54,9 +54,13 @@ public class SwordAttack : MonoBehaviour
             {
                 foreach (Collider2D hit in objectsHit)
                 {
-                    combo.ComboIncrease(ps.swordDamageCurrent);
-                    hit.gameObject.GetComponent<EnemyHealth>().ChangeHealth(ps.swordDamageCurrent);
-                    if (hit.gameObject.GetComponent<EnemyHealth>() == null) { Debug.Log("Hit thing with no health"); yield return null; }
+                    
+                    if (hit.gameObject.GetComponent<EnemyHealth>() != null)
+                    {
+                        combo.ComboIncrease(ps.swordDamageCurrent);
+                        hit.gameObject.GetComponent<EnemyHealth>().ChangeHealth(ps.swordDamageCurrent);
+                    }
+                    else { Debug.Log("Hit thing with no health"); yield return null; }
                 }
             }
             yield return null;

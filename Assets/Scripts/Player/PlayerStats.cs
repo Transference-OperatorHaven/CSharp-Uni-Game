@@ -89,7 +89,11 @@ public class PlayerStats : MonoBehaviour
         {
             TriggerDeath();
         }
-        OnPlayerDamaged?.Invoke();
+        else
+        {
+            OnPlayerDamaged?.Invoke();
+        }
+        
     }
 
     IEnumerator Invulnerable()

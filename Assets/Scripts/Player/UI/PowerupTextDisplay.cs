@@ -7,14 +7,14 @@ using UnityEngine;
 
 public class PowerupTextDisplay : MonoBehaviour
 {
-    GameObject powerupDescription;
+    [SerializeField]GameObject powerupDescription;
     [SerializeField] float showTime;
     TextMeshProUGUI titleText;
     TextMeshProUGUI descriptionText;
 
     private void Start()
     {
-        powerupDescription = transform.GetChild(0).gameObject;
+        
         gameObject.SetActive(false);
         powerupDescription.SetActive(false);
         titleText = gameObject.GetComponent<TextMeshProUGUI>();

@@ -8,7 +8,7 @@ public class EnemyHealth : MonoBehaviour
     public float maxHealth;
     public float invulerabilityTime;
     public float invulerabilityDuration;
-    public bool hurt, dead;
+    public bool hurt, playedHurtAnim ,dead;
     LayerMask startingLayer;
     SpriteRenderer sr;
     Rigidbody2D rb;
@@ -48,6 +48,7 @@ public class EnemyHealth : MonoBehaviour
     public void ChangeHealth(float val)
     {
         hurt = true;
+        playedHurtAnim = true;
         currentHealth += val;
         if (invulerabilityTime < Time.time) { StartCoroutine(Invulerable()); }
     }
@@ -68,5 +69,6 @@ public class EnemyHealth : MonoBehaviour
         
         gameObject.layer = startingLayer;
         hurt = false;
+        playedHurtAnim = false;
     }
 }
