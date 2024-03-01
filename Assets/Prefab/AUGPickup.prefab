@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weapon: {fileID: 8396330038017066997, guid: 993547b693d175b4ea8eef2ad733ec83, type: 3}
-  fireRate: 0.3
+  fireRate: 0.2
   gunSpeed: 24
   damage: -4
   lifetime: 2.5

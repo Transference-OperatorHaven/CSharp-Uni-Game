@@ -52,7 +52,7 @@ MonoBehaviour:
   damage: -10
   lifetime: 10
   magSize: 5
-  reloadTime: -6
+  reloadTime: 6
 --- !u!212 &3324207393255811782
 SpriteRenderer:
   m_ObjectHideFlags: 0
