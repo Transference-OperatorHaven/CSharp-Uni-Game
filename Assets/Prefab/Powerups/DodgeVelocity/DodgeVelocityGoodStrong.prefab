@@ -148,8 +148,9 @@ MonoBehaviour:
   duration: 7
   strength: 0.6
   Name: Major Dodge Velocity Buff (7s)
-  Description: Dodging is 160% as effective as usual for 7 seconds
+  Description: Dodging is 60% more effective for 7 seconds
   permanent: 0
+  pickedUp: 0
   textDisplay: {fileID: 0}
 --- !u!50 &-4121052310965514169
 Rigidbody2D:

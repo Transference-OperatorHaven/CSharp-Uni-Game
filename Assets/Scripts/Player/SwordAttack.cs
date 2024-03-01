@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SwordAttack : MonoBehaviour
 {
-
+    public GameObject circle;
     private PlayerStats ps;
     private ComboSystem combo;
     public LayerMask swordLayer;
@@ -25,6 +25,7 @@ public class SwordAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        circle.transform.localScale = new Vector3(ps.swordRadiusCurrent * 2, ps.swordRadiusCurrent * 2, ps.swordRadiusCurrent * 2);
         if (!ps.isAttacking && !ps.isAiming && !ps.isDodging)
         {
             if (Input.GetAxisRaw("Attack") == 1)
@@ -41,7 +42,7 @@ public class SwordAttack : MonoBehaviour
     private IEnumerator Attack()
     {
         float t = 0;
-
+        circle.GetComponent<SpriteRenderer>().enabled = true;
         ps.isAttacking = true;
         ps.swordCooldown = Time.time + ps.swordCooldownLengthCurrent;
         while (t < ps.swordDurationCurrent)
@@ -65,7 +66,7 @@ public class SwordAttack : MonoBehaviour
             yield return null;
         }
         ps.isAttacking = false;
-        
+        circle.GetComponent<SpriteRenderer>().enabled = false;
 
     }
 

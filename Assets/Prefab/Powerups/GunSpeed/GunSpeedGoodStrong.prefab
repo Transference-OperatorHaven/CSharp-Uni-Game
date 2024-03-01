@@ -147,6 +147,7 @@ MonoBehaviour:
   duration: 3
   strength: 1
   Name: Major Bullet Speed Buff (3s)
-  Description: 100% Faster Fire Rate for 3 seconds
+  Description: 100% Faster bullets for 3 seconds
   permanent: 0
+  pickedUp: 0
   textDisplay: {fileID: 0}

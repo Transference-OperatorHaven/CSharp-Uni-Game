@@ -146,7 +146,8 @@ MonoBehaviour:
   _statBuff: 9
   duration: 7
   strength: 0.25
-  Name: Minor Rate of Fire Buff (7s)
-  Description: 25% faster Rate of Fire for 7 Seconds
+  Name: Minor Bullet Speed Buff (7s)
+  Description: 25% faster bullets for 7 Seconds
   permanent: 0
+  pickedUp: 0
   textDisplay: {fileID: 0}

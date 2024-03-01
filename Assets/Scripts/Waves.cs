@@ -49,8 +49,9 @@ public class Waves : MonoBehaviour
         waveCount++;
         if(waveCount % 3 == 0)
         {
-            GameObject.FindWithTag("Player").GetComponent<PlayerStats>().healthMax += 3;
-            GameObject.FindWithTag("Player").GetComponent<PlayerStats>().ChangeHealth(GameObject.FindWithTag("Player").GetComponent<PlayerStats>().healthMax, false);
+            PlayerStats ps = GameObject.FindWithTag("Player").GetComponent<PlayerStats>();
+            ps.healthMax = ps.healthMax + 3;
+            ps.ChangeHealth(ps.healthMax - ps.healthCurrent, false);
         }
         enemies.Clear();
 
@@ -96,13 +97,6 @@ public class Waves : MonoBehaviour
             gameStarted = true;
         }
         NewWave();
-
-        yield return new WaitForSeconds(180f);
-        if (enemies.Count > 0)
-        {
-            enemies.Clear();
-            StartNewWave();
-        }
     }
 
 

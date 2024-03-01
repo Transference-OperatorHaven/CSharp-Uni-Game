@@ -145,8 +145,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _statBuff: 2
   duration: 8
-  strength: 0.1
+  strength: -0.1
   Name: Minor Dodge Recovery Debuff (8s)
   Description: Recovering from dodges takes 10% longer
   permanent: 0
+  pickedUp: 0
   textDisplay: {fileID: 0}

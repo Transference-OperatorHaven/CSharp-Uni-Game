@@ -148,8 +148,9 @@ MonoBehaviour:
   duration: 15
   strength: 0.2
   Name: Minor Dodge Velocity Buff (15s)
-  Description: Dodging is 120% as effective as usual for 15 seconds
+  Description: Dodging is 20% more effective for 15 seconds
   permanent: 0
+  pickedUp: 0
   textDisplay: {fileID: 0}
 --- !u!50 &-6201482300706769667
 Rigidbody2D:

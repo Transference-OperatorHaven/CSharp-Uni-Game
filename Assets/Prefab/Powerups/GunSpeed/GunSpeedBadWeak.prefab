@@ -147,6 +147,7 @@ MonoBehaviour:
   duration: 8
   strength: -0.1
   Name: Minor Bullet Speed Nerf (8s)
-  Description: 10% less bullet speed for 8 seconds
+  Description: 10% slower bullets for 8 seconds
   permanent: 0
+  pickedUp: 0
   textDisplay: {fileID: 0}

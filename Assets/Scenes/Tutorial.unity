@@ -1680,7 +1680,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Dange! Spoilers and Possible Death!
+  m_text: 'Danger! Spoilers and Possible Death!
 
 '
   m_isRightToLeft: 0
@@ -51123,22 +51123,6 @@ PrefabInstance:
     - target: {fileID: 2024484319102076079, guid: 947d0a70b55434447b563c12034873e5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3053612760643229402, guid: 947d0a70b55434447b563c12034873e5, type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3053612760643229402, guid: 947d0a70b55434447b563c12034873e5, type: 3}
-      propertyPath: m_NormalizedViewPortRect.y
-      value: 0.055555556
-      objectReference: {fileID: 0}
-    - target: {fileID: 3053612760643229402, guid: 947d0a70b55434447b563c12034873e5, type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3053612760643229402, guid: 947d0a70b55434447b563c12034873e5, type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 0.8888889
       objectReference: {fileID: 0}
     - target: {fileID: 4507670229632770626, guid: 947d0a70b55434447b563c12034873e5, type: 3}
       propertyPath: slider

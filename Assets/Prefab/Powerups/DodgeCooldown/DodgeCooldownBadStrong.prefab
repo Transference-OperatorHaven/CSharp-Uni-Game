@@ -145,8 +145,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _statBuff: 2
   duration: 5
-  strength: 0.5
+  strength: -0.5
   Name: Major Dodge Recovery Debuff (5s)
-  Description: Recovering from dodges takes 50% longer
+  Description: Recovering from dodges takes 50% longer for 5 secon
   permanent: 0
+  pickedUp: 0
   textDisplay: {fileID: 0}

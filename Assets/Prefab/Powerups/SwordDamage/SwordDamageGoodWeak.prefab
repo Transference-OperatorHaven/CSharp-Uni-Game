@@ -144,9 +144,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _statBuff: 4
-  duration: 10
-  strength: -1
-  Name: less dodge per dodge!
-  Description: take twice as long to recover from dodge
+  duration: 12
+  strength: 0.35
+  Name: Minor Sword Damage Buff (12s)
+  Description: Deal 35% more sword damage for 12 seconds
   permanent: 0
+  pickedUp: 0
   textDisplay: {fileID: 0}

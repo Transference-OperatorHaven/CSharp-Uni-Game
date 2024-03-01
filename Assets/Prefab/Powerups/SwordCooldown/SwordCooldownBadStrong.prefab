@@ -145,8 +145,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _statBuff: 7
   duration: 7
-  strength: 0.35
+  strength: -0.35
   Name: Major Sword Recovery Nerf (7s)
   Description: Recover from swinging your sword 35% slower for 7 seconds
   permanent: 0
+  pickedUp: 0
   textDisplay: {fileID: 0}
