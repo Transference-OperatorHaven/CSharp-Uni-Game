@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 1772451117854019970}
   - component: {fileID: 2497117167392141057}
   - component: {fileID: 3324207393255811782}
-  m_Layer: 0
-  m_Name: WeaponPickup
+  - component: {fileID: -9166085784874535625}
+  m_Layer: 10
+  m_Name: GarandPickUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,7 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 705fdecad016b9b4fb33b998d05c60e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weapon: {fileID: 8396330038017066997, guid: 87952d9f04ebbdc4d854d498803fdd5c, type: 3}
+  weapon: {fileID: 8396330038017066997, guid: d204a0b4ea473ce4999f37328e89c294, type: 3}
+  fireRate: 0.4
+  gunSpeed: 64
+  damage: -10
+  lifetime: 10
+  magSize: 5
+  reloadTime: -6
 --- !u!212 &3324207393255811782
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -87,7 +94,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: bdaa4b74626c3b94285440dad04b2c0f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fd665a1b54d729a43a2b6e17f4a38745, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,3 +105,48 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &-9166085784874535625
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7422667819890550262}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 0.16, y: 0.16}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

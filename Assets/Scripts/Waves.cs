@@ -7,7 +7,8 @@ using Random = UnityEngine.Random;
 
 public class Waves : MonoBehaviour
 {
-    int waveCount;
+    [SerializeField]int waveCount;
+    public int currWave;
     [SerializeField] Transform[] spawnPos;
     [SerializeField] Transform wizardSpawn;
     [SerializeField] GameObject[] enemyPrefabs;
@@ -26,6 +27,8 @@ public class Waves : MonoBehaviour
     
     private void FixedUpdate()
     {
+        
+        currWave = waveCount;
         for (int i = 0; i < enemies.Count; i++)
         {
 
@@ -34,10 +37,6 @@ public class Waves : MonoBehaviour
                 enemies.Remove(enemies[i]);
                 
             }
-        }
-        if(Input.GetAxis("Submit") == 1)
-        {
-            waveCount = 9;
         }
         if(!spawningEnemies &&  enemies.Count == 0)
         {
@@ -48,7 +47,11 @@ public class Waves : MonoBehaviour
     void NewWave()
     {
         waveCount++;
-
+        if(waveCount % 3 == 0)
+        {
+            GameObject.FindWithTag("Player").GetComponent<PlayerStats>().healthMax += 3;
+            GameObject.FindWithTag("Player").GetComponent<PlayerStats>().ChangeHealth(GameObject.FindWithTag("Player").GetComponent<PlayerStats>().healthMax, false);
+        }
         enemies.Clear();
 
         if(waveCount % 10 == 0 && waveCount >= 10)
@@ -61,7 +64,7 @@ public class Waves : MonoBehaviour
         else
         {
             text.text = "Wave: " + waveCount;
-            for (int i = 0; i < waveCount * 2; i++)
+            for (int i = 0; i < (4+Mathf.RoundToInt(1+waveCount/4)); i++)
             {
                 enemyCount++;
                 GameObject enemyToBeAdded = (GameObject)Instantiate(enemyPrefabs[Random.Range(0,3)], spawnPos[i % 3].position, Quaternion.identity);
@@ -93,6 +96,13 @@ public class Waves : MonoBehaviour
             gameStarted = true;
         }
         NewWave();
+
+        yield return new WaitForSeconds(180f);
+        if (enemies.Count > 0)
+        {
+            enemies.Clear();
+            StartNewWave();
+        }
     }
 
 

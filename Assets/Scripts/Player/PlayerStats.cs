@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 
 public class PlayerStats : MonoBehaviour
@@ -51,10 +52,11 @@ public class PlayerStats : MonoBehaviour
     ParticleSystem ps;
     [SerializeField]int numberOfBuffs = 0;
     [SerializeField]ParticleSystem.MainModule psMain;
+    Scene currentScene;
 
     private void Awake()
     {
-
+        currentScene = SceneManager.GetActiveScene();
         UpdateHealthStats();
         UpdateDodgeStats();
         UpdateGunStats();
@@ -116,8 +118,8 @@ public class PlayerStats : MonoBehaviour
     void TriggerDeath()
     {
         OnPlayerDeath?.Invoke();
-        Debug.Log("Deadth");
-        sr.color = Color.blue;
+        Camera.main.enabled = false;
+        SceneManager.LoadScene(currentScene.name, LoadSceneMode.Single);
     }
 
     public void UpdateDodgeStats()

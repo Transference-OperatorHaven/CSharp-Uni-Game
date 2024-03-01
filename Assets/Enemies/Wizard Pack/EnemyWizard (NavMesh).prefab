@@ -144,7 +144,7 @@ Transform:
   - {fileID: 6168941349927594175}
   - {fileID: 7912779280955133275}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!195 &-4581988505173139180
 NavMeshAgent:
@@ -322,6 +322,13 @@ MonoBehaviour:
   eH: {fileID: 6830499546103944532}
   fireballPrefab: {fileID: 2500881158479915102, guid: eb52407a47e0a244f91e0113f3c1eb76, type: 3}
   lightningStormPrefab: {fileID: 6182703043709289154, guid: 42f61bea92d6d0d44956afe3408ba95e, type: 3}
+  WeaponDrops:
+  - {fileID: 7422667819890550262, guid: 14fc48d49cb28774e9e8c51040a5fd5b, type: 3}
+  - {fileID: 7422667819890550262, guid: 4e1e8cb5f2f3323409cd5a58ad146869, type: 3}
+  - {fileID: 7422667819890550262, guid: 017ce798db291c7448fda7879e59ebdb, type: 3}
+  - {fileID: 7422667819890550262, guid: b8bb71aee460a9742a6d30fa631a9552, type: 3}
+  - {fileID: 7422667819890550262, guid: 712c6b649d9696d46bc6fb3d9a305e07, type: 3}
+  - {fileID: 0}
   isAttacking: 0
   hover1Triggered: 0
   inHover: 0

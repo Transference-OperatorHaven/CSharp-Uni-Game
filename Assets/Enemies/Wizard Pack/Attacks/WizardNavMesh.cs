@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class WizardNavMesh : MonoBehaviour
 {
@@ -19,8 +17,10 @@ public class WizardNavMesh : MonoBehaviour
     BoxCollider2D bC;
     float speed;
     public GameObject fireballPrefab, lightningStormPrefab;
+    public GameObject[] WeaponDrops;
+    float weaponDropIndex;
     [Header("Attack Logic")]
-    [SerializeField]bool isAttacking, hover1Triggered, inHover, hover2Triggered, finalStandTriggered;
+    [SerializeField]bool isAttacking, hover1Triggered, inHover, hover2Triggered, finalStandTriggered, gunDropped;
     [SerializeField]float timeSinceLastFireBall;
     [SerializeField]float timeSinceLastAttack;
     public float 
@@ -108,8 +108,15 @@ public class WizardNavMesh : MonoBehaviour
             {
                 agent.isStopped = true;
                 bC.enabled = false;
+                Waves waves = (Waves)FindObjectOfType<Waves>();
+                if (!gunDropped)
+                {
+                    gunDropped = true;
+                    Instantiate(WeaponDrops[(waves.currWave / 10) % WeaponDrops.Length], transform.position, Quaternion.identity);
+                }
                 animator.SetBool("dead", true);
                 Destroy(gameObject, deathAnimTime);
+                
             }
             animator.SetFloat("Speed", agent.speed);
             if (!isAttacking && !eH.dead && !eH.hurt && !inHover)
@@ -188,7 +195,7 @@ public class WizardNavMesh : MonoBehaviour
     IEnumerator HoverAttack()
     {
         Debug.Log("After Coroutine");
-        gameObject.layer = 0;
+        eH.enabled = false;
         animator.SetBool("Hovering", true);
         eH.ChangeHealth(0);
         agent.stoppingDistance = 0;
@@ -201,7 +208,7 @@ public class WizardNavMesh : MonoBehaviour
             yield return new WaitForSeconds(0.2f);
         }
 
-        gameObject.layer = 8;
+        eH.enabled = true;  
         inHover = false;
         agent.stoppingDistance = 8;
         animator.SetBool("Hovering", false);

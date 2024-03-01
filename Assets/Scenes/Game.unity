@@ -93658,6 +93658,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 209a4cada3a62464e8d9d136b70e9a6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waveCount: 0
+  currWave: 0
   spawnPos:
   - {fileID: 892520196}
   - {fileID: 1397223555}
@@ -93671,8 +93673,8 @@ MonoBehaviour:
   - {fileID: 6301680343393699318, guid: 2bf3129639fbc7943aed8e8de13fa65e, type: 3}
   wizardPrefab: {fileID: 6301680343393699318, guid: 84b669ef27af11e4db70d54639ca9b45, type: 3}
   text: {fileID: 1124832678}
-  enemies: []
   enemyCount: 0
+  enemies: []
 --- !u!114 &1272770304 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8978403273443201451, guid: 05243b1de5efc834aa2a821459786f44, type: 3}
@@ -97484,11 +97486,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2024484319102076079, guid: 947d0a70b55434447b563c12034873e5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.97
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2024484319102076079, guid: 947d0a70b55434447b563c12034873e5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.84
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2024484319102076079, guid: 947d0a70b55434447b563c12034873e5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -97521,6 +97523,14 @@ PrefabInstance:
     - target: {fileID: 2024484319102076079, guid: 947d0a70b55434447b563c12034873e5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3053612760643229402, guid: 947d0a70b55434447b563c12034873e5, type: 3}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0.055555556
+      objectReference: {fileID: 0}
+    - target: {fileID: 3053612760643229402, guid: 947d0a70b55434447b563c12034873e5, type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 0.8888889
       objectReference: {fileID: 0}
     - target: {fileID: 4507670229632770626, guid: 947d0a70b55434447b563c12034873e5, type: 3}
       propertyPath: slider

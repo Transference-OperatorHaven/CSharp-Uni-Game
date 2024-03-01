@@ -5,6 +5,7 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TopDownCharacterController : MonoBehaviour
 {
@@ -77,7 +78,10 @@ public class TopDownCharacterController : MonoBehaviour
     /// </summary>
     private void Update()
     {
-
+        if(Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
 
         // read input from WASD keys whilst not dodging
         if (!ps.isDodging && !ps.isAiming)

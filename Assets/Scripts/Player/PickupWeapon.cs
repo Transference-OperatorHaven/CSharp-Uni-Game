@@ -9,12 +9,13 @@ public class PickupWeapon : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.GetComponentInChildren<Weapon>() != null)
+        if (collision.transform.tag == "Player")
         {
-            collision.gameObject.GetComponentInChildren<Weapon>().ChangeWeaponPrefab(weapon, fireRate, gunSpeed, damage, lifetime, magSize, reloadTime);
+            Debug.Log("Giving weapon");
+            Weapon targetScript = collision.GetComponentInChildren<Weapon>();
+            targetScript.ChangeWeaponPrefab(weapon, fireRate, gunSpeed, damage, lifetime, magSize, reloadTime);
             Destroy(gameObject);
         }
-       
-
+        
     }
 }

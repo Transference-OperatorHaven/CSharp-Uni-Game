@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  detectionRadius: 12
+  detectionRadius: 100
   circleOffset: 0
   isAttacking: 0
   attackPos: {fileID: 7912779280955133275}
@@ -299,7 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  maxHealth: 10
+  maxHealth: 20
   invulerabilityTime: 0
   invulerabilityDuration: 0.33
   hurt: 0
